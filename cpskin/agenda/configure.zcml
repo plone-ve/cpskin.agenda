@@ -1,0 +1,9 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+    <include file="profiles.zcml" />
+
+    <include package=".behaviors" />
+    <include package=".browser" />
+
+</configure>
