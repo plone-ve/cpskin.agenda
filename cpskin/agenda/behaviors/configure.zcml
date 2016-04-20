@@ -1,7 +1,17 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="cpskin">
 
   <include package="plone.behavior" file="meta.zcml" />
+
+  <plone:behavior
+    title="Schedule details"
+    description="Optional special schedule details for event."
+    provides=".schedule.ISchedule"
+    factory=".schedule.Schedule"
+    for="plone.app.contenttypes.interfaces.IEvent"
+    marker=".schedule.ISchedule"
+    />
 
 </configure>
