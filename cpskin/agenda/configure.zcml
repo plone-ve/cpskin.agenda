@@ -5,5 +5,6 @@
 
     <include package=".behaviors" />
     <include package=".browser" />
+    <include package=".faceted" />
 
 </configure>

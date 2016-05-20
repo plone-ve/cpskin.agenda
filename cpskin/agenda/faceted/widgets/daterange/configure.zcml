@@ -1,0 +1,7 @@
+<configure
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:faceted="http://namespaces.zope.org/faceted">
+
+  <faceted:widget factory=".widget.Widget" />
+
+</configure>
