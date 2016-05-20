@@ -1,0 +1,12 @@
+.faceted-simpledate-widget-form div {
+  float: left;
+  margin-left: 0.5em;
+}
+
+.faceted-simpledate-widget-form div label {
+  display: block;
+}
+
+.faceted-simpledate-widget-form input {
+  width: 10em;
+}

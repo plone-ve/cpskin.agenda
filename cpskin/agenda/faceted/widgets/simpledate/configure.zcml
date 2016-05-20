@@ -1,0 +1,27 @@
+<configure
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:faceted="http://namespaces.zope.org/faceted">
+
+  <faceted:widget factory=".widget.Widget" />
+
+  <browser:resource
+    name="cpskin.agenda.widgets.simpledate.view.js"
+    file="./view.js"
+   />
+
+  <browser:resource
+    name="cpskin.agenda.widgets.simpledate.edit.js"
+    file="./edit.js"
+   />
+
+  <browser:resource
+    name="cpskin.agenda.widgets.simpledate.view.css"
+    file="./view.css"
+   />
+
+  <browser:resource
+    name="cpskin.agenda.widgets.simpledate.edit.css"
+    file="./edit.css"
+   />
+
+</configure>

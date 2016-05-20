@@ -2,5 +2,6 @@
     xmlns="http://namespaces.zope.org/zope">
 
     <include package=".daterange" />
+    <include package=".simpledate" />
 
 </configure>

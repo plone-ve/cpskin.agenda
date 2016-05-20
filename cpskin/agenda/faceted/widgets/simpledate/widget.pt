@@ -1,0 +1,37 @@
+<div class="faceted-widget faceted-simpledate-widget" style="display: none"
+     i18n:domain="cpskin" tal:define="
+  error_view nocall:context/@@faceted.widget.error;
+  wid python:view.data.getId();
+  dateFormat python:view.js_date_format;
+  language python:view.js_language;
+  hidden python:view.hidden;
+  default_value python:view.default;
+  css string:faceted-widget ${view/css_class};
+  css python:hidden and css + ' faceted-widget-hidden' or css;"
+  tal:attributes="id string:${wid}_widget; class css">
+
+<fieldset class="widget-fieldset">
+<legend tal:define="title python:view.data.get('title', '')" tal:content="
+  python:view.translate(title)" i18n:translate="">Simple Date widget</legend>
+
+<form action="." method="get" class="faceted-simpledate-widget-form"
+  tal:on-error="structure python:error_view(error=error, cid=wid)">
+  <div tal:attributes="id string:${wid}_date;">
+    <label tal:attributes="for string:$wid-date-input"
+      i18n:translate="">Date</label>
+    <input type="text" name="date" title="Date" tal:attributes="
+      id string:$wid-date-input;
+      value default"
+      i18n:attributes="title" />
+  </div>
+  <div tal:attributes="id string:${wid}_errors"></div>
+  <input type="hidden" name="dateFormat"
+    tal:attributes="id string:${wid}_dateFormat;
+    value string:$dateFormat"/>
+  <input type="hidden" name="language"
+    tal:attributes="id string:${wid}_language;
+    value string:$language"/>
+</form>
+
+</fieldset>
+</div>
