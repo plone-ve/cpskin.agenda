@@ -7,7 +7,7 @@
   <include package="eea.facetednavigation" file="meta.zcml" />
 
   <include file="configure.zcml" />
-  
+
   <genericsetup:registerProfile
       name="testing"
       title="cpskin.agenda: testing"

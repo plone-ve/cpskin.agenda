@@ -41,16 +41,16 @@ class CPSkinAgendaPloneWithPackageLayer(PloneWithPackageLayer):
 
 
 CPSKIN_AGENDA_FIXTURE = CPSkinAgendaPloneWithPackageLayer(
-    name="CPSKIN_AGENDA_FIXTURE",
-    zcml_filename="testing.zcml",
+    name='CPSKIN_AGENDA_FIXTURE',
+    zcml_filename='testing.zcml',
     zcml_package=cpskin.agenda,
-    gs_profile_id="cpskin.agenda:testing")
+    gs_profile_id='cpskin.agenda:testing')
 
 CPSKIN_AGENDA_INTEGRATION_TESTING = IntegrationTesting(
     bases=(CPSKIN_AGENDA_FIXTURE,),
-    name="cpskin.agenda:Integration")
+    name='cpskin.agenda:Integration')
 
 CPSKIN_AGENDA_ROBOT_TESTING = FunctionalTesting(
     bases=(CPSKIN_AGENDA_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE,
            z2.ZSERVER_FIXTURE),
-    name="cpskin.agenda:Robot")
+    name='cpskin.agenda:Robot')

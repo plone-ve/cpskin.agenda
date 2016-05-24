@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from Products.CMFCore.utils import getToolByName
+from plone import api
 from plone.app.testing import applyProfile
 import unittest2 as unittest
 
@@ -19,6 +19,6 @@ class TestProfiles(unittest.TestCase):
 
     def test_product_is_installed(self):
         pid = 'cpskin.agenda'
-        qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
+        qi_tool = api.portal.get_tool('portal_quickinstaller')
         installed = [p['id'] for p in qi_tool.listInstalledProducts()]
         self.assertTrue(pid in installed)

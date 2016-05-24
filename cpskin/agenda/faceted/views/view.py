@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from plone import api
 from zope.component import getMultiAdapter
 
 
@@ -17,7 +17,7 @@ def sort_and_group(context, brains, start, end):
     """
     We need to group by day and separate one-day and multi-days events
     """
-    catalog = getToolByName(context, 'portal_catalog')
+    catalog = api.portal.get_tool('portal_catalog')
     days = {}
     for brain in brains:
         rid = brain.getRID()
