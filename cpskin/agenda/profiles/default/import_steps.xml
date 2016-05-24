@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="cpskin.agenda.default"
+               handler="cpskin.agenda.setuphandlers.install"
+               title="cpskin.agenda: install import step">
+  </import-step>
+</import-steps>

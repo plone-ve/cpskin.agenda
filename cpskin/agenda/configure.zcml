@@ -7,4 +7,9 @@
     <include package=".browser" />
     <include package=".faceted" />
 
+    <adapter
+      factory=".dates.getDates"
+      name="getDates"
+      />
+
 </configure>
