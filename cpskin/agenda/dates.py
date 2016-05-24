@@ -8,7 +8,7 @@ from plone.indexer import indexer
 
 
 @indexer(IEvent)
-def getDates(obj):
+def event_dates(obj):
     """
     Return all days in which the event occurs
     """

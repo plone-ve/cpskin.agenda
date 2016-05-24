@@ -22,7 +22,7 @@ def sort_and_group(context, brains, start, end):
     for brain in brains:
         rid = brain.getRID()
         idx = catalog.getIndexDataForRID(rid)
-        allDates = idx['getDates']
+        allDates = idx['event_dates']
         multiDays = len(allDates) > 1 and 'multi' or 'single'
         for date in allDates:
             if not is_in_range(date, start, end):

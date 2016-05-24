@@ -8,8 +8,8 @@
     <include package=".faceted" />
 
     <adapter
-      factory=".dates.getDates"
-      name="getDates"
+      factory=".dates.event_dates"
+      name="event_dates"
       />
 
 </configure>
