@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:faceted="http://namespaces.zope.org/faceted">
+
+    <faceted:view
+      name="faceted-events-preview-items"
+      class=".view.EventsView"
+      template="preview-events.pt"
+      title="Faceted events preview"
+      permission="zope2.View"
+      />
+
+</configure>

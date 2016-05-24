@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea">
+
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:block define-macro="content-core">
+      <div tal:define="
+        self nocall:context/@@faceted-events-preview-items;
+        folderContents folderContents | python:context.getFolderContents();
+        results python:self.organize(folderContents);">
+
+        <div class="eea-preview-items"
+             tal:define="days python: sorted(results.keys())">
+          <tal:entries repeat="day days">
+            <div class="day"
+                 tal:define="singledays python: results[day]['single'];
+                             multidays python: results[day]['multi'];">
+                <span tal:replace="python:day.strftime('%d/%m/%Y')" />
+                <div class="single-days" tal:condition="singledays">
+                    <tal:entries repeat="brain singledays">
+                        <tal:entry
+                          define="doc brain/getObject|nothing"
+                          condition="exists:doc/@@faceted-preview-item"
+                          replace="structure doc/@@faceted-preview-item" />
+                    </tal:entries>
+                </div>
+                <div class="multi-days" tal:condition="multidays">
+                    <tal:entries repeat="brain multidays">
+                        <tal:entry
+                          define="doc brain/getObject|nothing"
+                          condition="exists:doc/@@faceted-preview-item"
+                          replace="structure doc/@@faceted-preview-item" />
+                    </tal:entries>
+                </div>
+            </div>
+          </tal:entries>
+        </div>
+
+      </div>
+
+    </metal:block>
+  </metal:content-core>
+</body>
+</html>
