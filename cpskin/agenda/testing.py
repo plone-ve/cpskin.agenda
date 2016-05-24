@@ -1,21 +1,43 @@
 # -*- coding: utf-8 -*-
 
-from plone.testing import z2
-from plone.app.testing import applyProfile
+from plone import api
+from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneWithPackageLayer
-from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import applyProfile
+from plone.app.testing import login
+from plone.app.testing import setRoles
+from plone.testing import z2
 
 import cpskin.agenda
 
 
 class CPSkinAgendaPloneWithPackageLayer(PloneWithPackageLayer):
-    """
-    """
+
+    def setUpZope(self, app, configurationContext):
+        self.loadZCML('testing.zcml', package=cpskin.agenda)
+        z2.installProduct(app, 'Products.DateRecurringIndex')
+
+    def tearDownZope(self, app):
+        z2.uninstallProduct(app, 'Products.DateRecurringIndex')
 
     def setUpPloneSite(self, portal):
+        portal.acl_users.userFolderAddUser('admin',
+                                           'secret',
+                                           ['Manager'],
+                                           [])
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+        login(portal, 'admin')
+        portal.portal_workflow.setDefaultChain('one_state_workflow')
         applyProfile(portal, 'cpskin.agenda:testing')
+        applyProfile(portal, 'plone.app.contenttypes:plone-content')
+        api.content.create(
+            type='Folder',
+            id='folder',
+            title='folder',
+            container=portal)
 
 
 CPSKIN_AGENDA_FIXTURE = CPSkinAgendaPloneWithPackageLayer(

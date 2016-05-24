@@ -2,6 +2,10 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
+  <include package="plone.app.contenttypes" />
+  <include package="plone.app.event" />
+  <include package="eea.facetednavigation" file="meta.zcml" />
+
   <include file="configure.zcml" />
   
   <genericsetup:registerProfile

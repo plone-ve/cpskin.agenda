@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from plone.testing import layered
-from cpskin.agenda.testing import CPSKIN_AGENDA_ROBOT_TESTING
 
+from plone.testing import layered
 import robotsuite
 import unittest
+
+from cpskin.agenda.testing import CPSKIN_AGENDA_ROBOT_TESTING
 
 
 def test_suite():
