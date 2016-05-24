@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-version = '0.7.9.dev0'
+version = '0.1.dev0'
 
 from setuptools import setup, find_packages
 
@@ -37,28 +37,13 @@ setup(name='cpskin.agenda',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Plone',
           'plone.api',
           'plone.app.contenttypes',
-          'Plone',
-          'archetypes.schemaextender',
-          'imio.ckeditortemplates',
-          'collective.contentleadimage',
-          'collective.directory',
-          'collective.monkeypatcher',
-          'cpskin.locales',
-          'imio.media',
-          'collective.plonetruegallery',
-          'collective.geo.leaflet',
+          'plone.app.event',
           'plone.behavior',
-          'collective.sticky',
-          'collective.quickupload',
-          'wildcard.foldercontents',
           'eea.facetednavigation',
-          'collective.iconifieddocumentactions',
-          'collective.z3cform.keywordwidget',
-          # -*- Extra requirements: -*-
-          'httpagentparser',
-          'cpskin.minisite',
+          'cpskin.locales',
       ],
       extras_require={
           'test': [
