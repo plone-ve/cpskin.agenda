@@ -42,7 +42,7 @@ class EventsView(BrowserView):
 
     def organize(self, results):
         if not results:
-            return results
+            return {}
         startDate = None
         endDate = None
         handler = getMultiAdapter((self.context, self.request),
