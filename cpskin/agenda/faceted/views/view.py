@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Products.Five.browser import BrowserView
+from datetime import timedelta
 from plone import api
 from zope.component import getMultiAdapter
 
@@ -51,5 +52,7 @@ class EventsView(BrowserView):
         if 'start' in criteria and 'end' in criteria:
             endDate = criteria['start']['query'].asdatetime().date()
             startDate = criteria['end']['query'].asdatetime().date()
+            # Faceted use previous day at 23:59:59 for its query
+            startDate = startDate + timedelta(days=1)
         results = sort_and_group(self.context, results, startDate, endDate)
         return results
