@@ -14,4 +14,10 @@
     marker=".schedule.ISchedule"
     />
 
+  <plone:behavior
+    title="Related contacts"
+    description="Adds related Contacts from collective.contact suite."
+    provides=".related_contacts.IRelatedContacts"
+    for="plone.app.contenttypes.interfaces.IEvent"
+    />
 </configure>
