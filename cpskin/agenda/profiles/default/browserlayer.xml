@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<layers>
+    <layer name="cpskin.agenda" interface="cpskin.agenda.interfaces.ICPSkinAgendaLayer" />
+</layers>
