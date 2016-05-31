@@ -5,7 +5,7 @@ from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
-# from plone.supermodel import directives
+from plone.autoform import directives as form
 from plone.supermodel import model
 from zope.interface import provider
 
@@ -13,6 +13,7 @@ from zope.interface import provider
 @provider(IFormFieldProvider)
 class IRelatedContacts(model.Schema):
 
+    form.order_before(location='IRichText.text')
     location = ContactChoice(
         title=_(u"Location"),
         source=ContactSourceBinder(
@@ -21,6 +22,7 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
+    form.order_after(organizer='IRelatedContacts.location')
     organizer = ContactChoice(
         title=_(u"Organizer"),
         source=ContactSourceBinder(
@@ -29,6 +31,7 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
+    form.order_after(contact='IRelatedContacts.organizer')
     contact = ContactChoice(
         title=_(u"Contact"),
         source=ContactSourceBinder(
@@ -37,6 +40,7 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
+    form.order_after(partner='IRelatedContacts.contact')
     partner = ContactList(
         title=_(u"Partners"),
         value_type=ContactChoice(
@@ -55,6 +59,14 @@ def modified_event(obj, event):
         if 'cpskin.agenda.behaviors.related_contacts.IRelatedContacts' in obj.behaviors:
             remove_behavior(
                 type_name, 'plone.app.event.dx.behaviors.IEventAttendees')
+            remove_behavior(
+                type_name, 'plone.app.event.dx.behaviors.IEventLocation')
+            remove_behavior(
+                type_name, 'plone.app.event.dx.behaviors.IEventContact')
         else:
             add_behavior(
                 type_name, 'plone.app.event.dx.behaviors.IEventAttendees')
+            add_behavior(
+                type_name, 'plone.app.event.dx.behaviors.IEventLocation')
+            add_behavior(
+                type_name, 'plone.app.event.dx.behaviors.IEventContact')
