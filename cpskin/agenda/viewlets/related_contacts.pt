@@ -2,23 +2,23 @@
 
         <div tal:define="organizer view/get_organizer" tal:condition="organizer">
             <label i18n:translate="">Organizer</label>
-            <a tal:attributes="href organizer/absolute_url" tal:content="organizer/Title" />
+            <a target="_blank" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title" />
         </div>
         <div tal:define="contact view/get_contact" tal:condition="contact">
             <label i18n:translate="">Contact</label>            
-            <a tal:attributes="href contact/absolute_url" tal:content="contact/Title" />
+            <a target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title" />
         </div>
 
         <div tal:define="location view/get_location" tal:condition="location">
             <label i18n:translate="">Location</label>            
-            <a tal:attributes="href location/absolute_url" tal:content="location/Title" />
+            <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title" />
         </div>
         
         <div tal:define="partners view/get_partners" tal:condition="partners">
             <label i18n:translate="">Partners</label>            
             <ul>
             <li tal:repeat="partner partners">    
-                <a tal:attributes="href partner/absolute_url" tal:content="partner/Title" />                
+                <a target="_blank" tal:attributes="href partner/absolute_url" tal:content="partner/Title" />                
             </li>
             </ul>    
         </div>          
