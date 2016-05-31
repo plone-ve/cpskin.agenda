@@ -25,18 +25,24 @@ class TestBehaviors(unittest.TestCase):
 
     def test_only_one_attendees_field(self):
         fti = queryUtility(IDexterityFTI, name='Event')
+        event_behaviors = ['plone.app.event.dx.behaviors.IEventAttendees',
+                           'plone.app.event.dx.behaviors.IEventLocation',
+                           'plone.app.event.dx.behaviors.IEventContact'
+                           ]
+
         behaviors = list(fti.behaviors)
-        self.assertIn(
-            'plone.app.event.dx.behaviors.IEventAttendees', behaviors)
+
+        for event_behavior in event_behaviors:
+            self.assertIn(event_behavior, behaviors)
 
         add_behavior('Event', IRelatedContacts.__identifier__)
 
         behaviors = list(fti.behaviors)
-        self.assertNotIn(
-            'plone.app.event.dx.behaviors.IEventAttendees', behaviors)
+        for event_behavior in event_behaviors:
+            self.assertNotIn(event_behavior, behaviors)
 
         remove_behavior('Event', IRelatedContacts.__identifier__)
 
         behaviors = list(fti.behaviors)
-        self.assertIn(
-            'plone.app.event.dx.behaviors.IEventAttendees', behaviors)
+        for event_behavior in event_behaviors:
+            self.assertIn(event_behavior, behaviors)
