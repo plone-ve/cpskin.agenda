@@ -45,6 +45,7 @@ setup(name='cpskin.agenda',
           'collective.contact.core',
           'eea.facetednavigation',
           'cpskin.locales',
+          'cpskin.core',
       ],
       extras_require={
           'test': [
