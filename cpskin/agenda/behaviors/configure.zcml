@@ -15,9 +15,15 @@
     />
 
   <plone:behavior
-    title="Related contacts"
+    title="Related contacts agenda"
     description="Adds related Contacts from collective.contact suite."
     provides=".related_contacts.IRelatedContacts"
     for="plone.app.contenttypes.interfaces.IEvent"
+    />
+
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityFTI
+         zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler=".related_contacts.modified_event"
     />
 </configure>
