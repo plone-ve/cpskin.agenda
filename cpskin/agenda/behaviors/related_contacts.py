@@ -56,17 +56,14 @@ class IRelatedContacts(model.Schema):
 def modified_event(obj, event):
     type_name = obj.id
     if type_name == "Event":
+        pae_behaviors = [
+            'plone.app.event.dx.behaviors.IEventAttendees',
+            'plone.app.event.dx.behaviors.IEventLocation',
+            'plone.app.event.dx.behaviors.IEventContact'
+        ]
         if 'cpskin.agenda.behaviors.related_contacts.IRelatedContacts' in obj.behaviors:
-            remove_behavior(
-                type_name, 'plone.app.event.dx.behaviors.IEventAttendees')
-            remove_behavior(
-                type_name, 'plone.app.event.dx.behaviors.IEventLocation')
-            remove_behavior(
-                type_name, 'plone.app.event.dx.behaviors.IEventContact')
+            for pae_behavior in pae_behaviors:
+                remove_behavior(type_name, pae_behaviors)
         else:
-            add_behavior(
-                type_name, 'plone.app.event.dx.behaviors.IEventAttendees')
-            add_behavior(
-                type_name, 'plone.app.event.dx.behaviors.IEventLocation')
-            add_behavior(
-                type_name, 'plone.app.event.dx.behaviors.IEventContact')
+            for pae_behavior in pae_behaviors:
+                add_behavior(type_name, pae_behaviors)
