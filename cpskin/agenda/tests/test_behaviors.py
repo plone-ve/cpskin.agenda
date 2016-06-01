@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
-from cpskin.core.interfaces import ICPSkinCoreLayer
+from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
@@ -20,7 +20,7 @@ class TestBehaviors(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.request, ICPSkinCoreLayer)
+        alsoProvides(self.request, ICPSkinAgendaLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_only_one_attendees_field(self):
