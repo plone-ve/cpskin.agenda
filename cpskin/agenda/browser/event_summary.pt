@@ -69,16 +69,12 @@
     </tal:cond>
     </tal:cond>
 
-    <tal:cond condition="python:'location' not in excludes">
-    <tal:cond condition="data/location">
-      <li class="event-location">
-        <strong i18n:translate="event_where">Where</strong>
-        <span itemprop="location" tal:content="structure data/location">Location</span>
-      </li>
-    </tal:cond>
-    </tal:cond>
+    <div tal:define="location view/get_location" tal:condition="location">
+        <label i18n:translate="">Location</label>
+        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title" />
+    </div>
 
-    <div tal:define="partners view/get_partners" tal:condition="partners">
+    <div id="partners" tal:define="partners view/get_partners" tal:condition="partners">
         <label i18n:translate="">Partners</label>            
         <ul>
         <li tal:repeat="partner partners">    
