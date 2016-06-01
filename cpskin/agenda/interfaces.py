@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from plone.app.event.interfaces import IBrowserLayer
 
 
-class ICPSkinAgendaLayer(IDefaultBrowserLayer):
+class ICPSkinAgendaLayer(IBrowserLayer):
     """
     Marker interface that defines a ZTK browser layer.
     """
