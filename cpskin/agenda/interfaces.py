@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from zope.interface import Interface
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
-class ICPSkinAgendaLayer(Interface):
+class ICPSkinAgendaLayer(IDefaultBrowserLayer):
     """
     Marker interface that defines a ZTK browser layer.
     """
