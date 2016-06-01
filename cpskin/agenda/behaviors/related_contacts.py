@@ -40,8 +40,8 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
-    form.order_after(partner='IRelatedContacts.contact')
-    partner = ContactList(
+    form.order_after(partners='IRelatedContacts.contact')
+    partners = ContactList(
         title=_(u"Partners"),
         value_type=ContactChoice(
             title=_(u"Partner"),
