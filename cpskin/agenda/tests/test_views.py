@@ -45,7 +45,7 @@ def add_test_contents(portal):
         id='directory-organization',
         **params)
 
-    params = {'title': u"Organisation1",
+    params = {'title': u'Organisation1',
               'organization_type': u'orga',
               'use_parent_address': True,
               }
@@ -88,7 +88,7 @@ class TestViews(unittest.TestCase):
     def test_related_contacts_behavior_view_for_partners(self):
         view = getMultiAdapter(
             (self.event, self.request), name='event_summary')
-        self.assertNotIn("partners", view())
+        self.assertNotIn('partners', view())
 
         person, organization1, organization2 = add_test_contents(self.portal)
 
@@ -99,7 +99,7 @@ class TestViews(unittest.TestCase):
         rv1 = RelationValue(to_id1)
         rv2 = RelationValue(to_id2)
         self.event.partners = [rv1, rv2]
-        self.assertIn("partners", view())
+        self.assertIn('partners', view())
 
     def test_related_contacts_behavior_view_for_location(self):
         view = getMultiAdapter(
@@ -111,4 +111,4 @@ class TestViews(unittest.TestCase):
         to_id = intids.getId(organization1)
         rv = RelationValue(to_id)
         self.event.location = rv
-        self.assertIn("Location", view())
+        self.assertIn('Location', view())
