@@ -4,6 +4,7 @@ from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from plone.app.event import messageFactory as _
+from plone.app.event.browser.event_summary import EventSummaryView
 from plone.event.interfaces import IEventAccessor
 from plone.event.interfaces import IOccurrence
 from plone.event.interfaces import IRecurrenceSupport
@@ -11,10 +12,10 @@ from plone.memoize import view
 from plone.uuid.interfaces import IUUID
 from zope.component import getMultiAdapter
 from zope.contentprovider.interfaces import IContentProvider
-from plone.app.event.browser.event_summary import EventSummaryView
 
 
 class EventContactSummaryView(EventSummaryView):
+
     def get_organizer(self):
         if self.context.organizer is None:
             return None
@@ -39,5 +40,3 @@ class EventContactSummaryView(EventSummaryView):
         else:
             partners = [p.to_object for p in self.context.partners]
             return partners
-
-
