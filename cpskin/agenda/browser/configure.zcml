@@ -4,12 +4,12 @@
     i18n_domain="cpskin">
 
  <browser:page
-        for="plone.event.interfaces.IEvent"
-        name="event_summary"
-        class=".event_summary.EventContactSummaryView"
-        layer="..interfaces.ICPSkinAgendaLayer"
-        template="event_summary.pt"
-        permission="zope2.View"
-        />
+    for="plone.event.interfaces.IEvent"
+    name="event_summary"
+    class=".event_summary.EventContactSummaryView"
+    template="event_summary.pt"
+    permission="zope2.View"
+    layer="..interfaces.ICPSkinAgendaLayer"
+    />
 
 </configure>

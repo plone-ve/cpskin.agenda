@@ -69,19 +69,33 @@
     </tal:cond>
     </tal:cond>
 
-    <div tal:define="location view/get_location" tal:condition="location">
-        <label i18n:translate="">Location</label>
-        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title" />
-    </div>
 
-    <div id="partners" tal:define="partners view/get_partners" tal:condition="partners">
-        <label i18n:translate="">Partners</label>            
+
+
+    <li tal:define="organizer view/get_organizer" tal:condition="organizer">
+        <strong i18n:translate="">Organizer</strong>
+        <a target="_blank" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title" />
+    </li>
+    <li tal:define="contact view/get_contact" tal:condition="contact">
+        <strong i18n:translate="">Contact</strong>
+        <a target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title" />
+    </li>
+    <li tal:define="location view/get_location" tal:condition="location">
+        <strong i18n:translate="">Location</strong>
+        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title" />
+    </li>
+
+    <li id="partners" tal:define="partners view/get_partners" tal:condition="partners">
+        <strong i18n:translate="">Partners</strong>
         <ul>
-        <li tal:repeat="partner partners">    
-            <a target="_blank" tal:attributes="href partner/absolute_url" tal:content="partner/Title" />                
-        </li>
-        </ul>    
-    </div>  
+            <li tal:repeat="partner partners">
+                <a target="_blank" tal:attributes="href partner/absolute_url" tal:content="partner/Title" />
+            </li>
+        </ul>
+    </li>
+
+
+
 
     <tal:cond condition="python:'event_url' not in excludes">
     <tal:cond condition="data/event_url">
