@@ -34,19 +34,10 @@ class EventContactSummaryView(EventSummaryView):
             return self.context.location.to_object
 
     def get_partners(self):
-        if not self.context.partner:
+        if not self.context.partners:
             return None
         else:
-            partners = [p.to_object for p in self.context.partner]
+            partners = [p.to_object for p in self.context.partners]
             return partners
 
-    def available(self):
-        #Si au moins un des fields a été complété ==> return True
-        if self.get_organizer() is not None or \
-           self.get_contact() is not None or \
-           self.get_location() is not None or \
-           self.get_partner() is not None:
-            return True
-        else:
-            return False
 
