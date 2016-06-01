@@ -63,7 +63,7 @@ def modified_event(obj, event):
         ]
         if 'cpskin.agenda.behaviors.related_contacts.IRelatedContacts' in obj.behaviors:
             for pae_behavior in pae_behaviors:
-                remove_behavior(type_name, pae_behaviors)
+                remove_behavior(type_name, pae_behavior)
         else:
             for pae_behavior in pae_behaviors:
-                add_behavior(type_name, pae_behaviors)
+                add_behavior(type_name, pae_behavior)
