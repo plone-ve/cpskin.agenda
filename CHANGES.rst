@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2 (unreleased)
+1.0 (2016-06-02)
 ----------------
 
 - Add override of plone.app.event event_summary view.
