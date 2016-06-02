@@ -69,34 +69,6 @@
     </tal:cond>
     </tal:cond>
 
-
-
-
-    <li tal:define="organizer view/get_organizer" tal:condition="organizer">
-        <strong i18n:translate="">Organizer</strong>
-        <a target="_blank" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title" />
-    </li>
-    <li tal:define="contact view/get_contact" tal:condition="contact">
-        <strong i18n:translate="">Contact</strong>
-        <a target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title" />
-    </li>
-    <li tal:define="location view/get_location" tal:condition="location">
-        <strong i18n:translate="">Location</strong>
-        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title" />
-    </li>
-
-    <li id="partners" tal:define="partners view/get_partners" tal:condition="partners">
-        <strong i18n:translate="">Partners</strong>
-        <ul>
-            <li tal:repeat="partner partners">
-                <a target="_blank" tal:attributes="href partner/absolute_url" tal:content="partner/Title" />
-            </li>
-        </ul>
-    </li>
-
-
-
-
     <tal:cond condition="python:'event_url' not in excludes">
     <tal:cond condition="data/event_url">
       <li class="event-url">
@@ -123,6 +95,32 @@
         </tal:span>
       </li>
     </tal:cond>
+
+
+    <tal:block tal:condition="view/enabled|nothing">
+    <li tal:define="organizer view/get_organizer" tal:condition="organizer">
+        <strong i18n:translate="">Organizer</strong>
+        <a target="_blank" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title" />
+    </li>
+    <li tal:define="contact view/get_contact" tal:condition="contact">
+        <strong i18n:translate="">Contact</strong>
+        <a target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title" />
+    </li>
+    <li tal:define="location view/get_location" tal:condition="location">
+        <strong i18n:translate="">Location</strong>
+        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title" />
+    </li>
+
+    <li id="partners" tal:define="partners view/get_partners" tal:condition="partners">
+        <strong i18n:translate="">Partners</strong>
+        <ul>
+            <li tal:repeat="partner partners">
+                <a target="_blank" tal:attributes="href partner/absolute_url" tal:content="partner/Title" />
+            </li>
+        </ul>
+    </li>
+    </tal:block>
+
 
   </ul>
 

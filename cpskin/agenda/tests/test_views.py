@@ -72,9 +72,28 @@ class TestViews(unittest.TestCase):
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         directlyProvides(self.request, ICPSkinAgendaLayer)
+
+    def test_event_view_without_behavior(self):
         timezone = 'Europe/Brussels'
         now = datetime.datetime.now()
+        self.event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='event')
+        self.event.timezone = timezone
+        self.event.location = "Mon adresse"
+        eventbasic = IEventBasic(self.event)
+        eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
+        eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)
+        self.event.reindexObject()
+        view = getMultiAdapter(
+            (self.event, self.request), name='event_summary')
+        self.assertNotIn('partners', view())
+
+    def test_related_contacts_behavior_view_for_partners(self):
         add_behavior('Event', IRelatedContacts.__identifier__)
+        timezone = 'Europe/Brussels'
+        now = datetime.datetime.now()
         self.event = api.content.create(
             container=self.portal,
             type='Event',
@@ -84,8 +103,6 @@ class TestViews(unittest.TestCase):
         eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
         eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)
         self.event.reindexObject()
-
-    def test_related_contacts_behavior_view_for_partners(self):
         view = getMultiAdapter(
             (self.event, self.request), name='event_summary')
         self.assertNotIn('partners', view())
@@ -102,6 +119,18 @@ class TestViews(unittest.TestCase):
         self.assertIn('partners', view())
 
     def test_related_contacts_behavior_view_for_location(self):
+        add_behavior('Event', IRelatedContacts.__identifier__)
+        timezone = 'Europe/Brussels'
+        now = datetime.datetime.now()
+        self.event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='event')
+        self.event.timezone = timezone
+        eventbasic = IEventBasic(self.event)
+        eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
+        eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)
+        self.event.reindexObject()
         view = getMultiAdapter(
             (self.event, self.request), name='event_summary')
         person, organization1, organization2 = add_test_contents(self.portal)
