@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.1 (unreleased)
+1.0.1 (2016-06-08)
 ------------------
 
 - Use today date by default for simpledate widget
