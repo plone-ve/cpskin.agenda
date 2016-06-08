@@ -4,7 +4,8 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use today date by default for simpledate widget
+  [laulaz]
 
 
 1.0 (2016-06-02)

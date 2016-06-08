@@ -4,6 +4,7 @@ from DateTime import DateTime
 from collective.js.jqueryui.utils import get_datepicker_date_format
 from collective.js.jqueryui.utils import get_python_date_format
 from collective.js.jqueryui.viewlet import L10nDatepicker
+from datetime import date
 from datetime import datetime
 from eea.facetednavigation.widgets import ViewPageTemplateFile
 from eea.facetednavigation.widgets.widget import Widget as AbstractWidget
@@ -34,7 +35,8 @@ class Widget(AbstractWidget, L10nDatepicker):
         """Return default value"""
         default = self.data.get('default', '')
         if not default:
-            return ''
+            today = date.today()
+            return today.strftime(self.python_date_format)
         default = default.strip()
         try:
             default = DateTime(datetime.strptime(default,
