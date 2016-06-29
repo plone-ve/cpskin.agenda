@@ -4,7 +4,8 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Rename related contact behavior.
+  [bsuttor]
 
 
 1.0.1 (2016-06-08)

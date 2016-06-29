@@ -15,8 +15,8 @@
     />
 
   <plone:behavior
-    title="Related contacts agenda"
-    description="Adds related Contacts from collective.contact suite."
+    title="Use related contacts fields for Event"
+    description="Use location, organizer, contact and partners fields with a related field from collective.contact suite."
     provides=".related_contacts.IRelatedContacts"
     for="plone.app.contenttypes.interfaces.IEvent"
     />
