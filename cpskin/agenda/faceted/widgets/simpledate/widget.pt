@@ -21,7 +21,7 @@
       i18n:translate="">Date</label>
     <input type="text" name="date" title="Date" tal:attributes="
       id string:$wid-date-input;
-      value default_value"
+      value default"
       i18n:attributes="title" />
   </div>
   <div tal:attributes="id string:${wid}_errors"></div>

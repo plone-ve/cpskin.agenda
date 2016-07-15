@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Don't use today date by default for simpledate widget anymore
+  [laulaz]
+
 - Rename related contact behavior.
   [bsuttor]
 
