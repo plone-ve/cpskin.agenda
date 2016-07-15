@@ -37,6 +37,7 @@ setup(name='cpskin.agenda',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'z3c.unconfigure',
           'Plone',
           'plone.api',
           'plone.app.contenttypes',

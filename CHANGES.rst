@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Need to unconfigure original daterange widget to make ours available
+  [laulaz]
+
 - Don't use today date by default for simpledate widget anymore
   [laulaz]
 

@@ -1,6 +1,14 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:faceted="http://namespaces.zope.org/faceted"
     xmlns:monkey="http://namespaces.plone.org/monkey">
+
+    <include package="z3c.unconfigure" file="meta.zcml" />
+    <include package="eea.facetednavigation" />
+
+    <unconfigure>
+      <faceted:widget factory="eea.facetednavigation.widgets.daterange.widget.Widget" />
+    </unconfigure>
 
     <include package=".views" />
     <include package=".widgets" />
