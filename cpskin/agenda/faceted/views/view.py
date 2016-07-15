@@ -2,6 +2,7 @@
 
 from Products.Five.browser import BrowserView
 from datetime import timedelta
+from eea.facetednavigation.interfaces import ICriteria
 from plone import api
 from zope.component import getMultiAdapter
 
@@ -56,3 +57,15 @@ class EventsView(BrowserView):
             startDate = startDate + timedelta(days=1)
         results = sort_and_group(self.context, results, startDate, endDate)
         return results
+
+    def perPage(self):
+        num_per_page = 20
+        criteria = ICriteria(self.context)
+        for cid, criterion in criteria.items():
+            widgetclass = criteria.widget(cid=cid)
+            widget = widgetclass(self.context, self.request, criterion)
+            if widget.widget_type == 'resultsperpage':
+                kwargs = dict((key.replace('[]', ''), val)
+                              for key, val in self.request.form.items())
+                num_per_page = widget.results_per_page(kwargs)
+        return num_per_page

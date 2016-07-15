@@ -11,11 +11,16 @@
       <div tal:define="
         self nocall:context/@@faceted-events-preview-items;
         folderContents folderContents | python:context.getFolderContents();
-        results python:self.organize(folderContents);">
+        results python:self.organize(folderContents);
+        days python: sorted(results.keys());
+        Batch python:modules['Products.CMFPlone'].Batch;
+        b_start python:request.get('b_start', 0);
+        batch python: Batch(days, self.perPage(), int(b_start));">
 
-        <div class="eea-preview-items"
-             tal:define="days python: sorted(results.keys())">
-          <tal:entries repeat="day days">
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+        <div class="eea-preview-items">
+          <tal:entries repeat="day batch">
             <div class="day"
                  tal:define="singledays python: results[day]['single'];
                              multidays python: results[day]['multi'];">
@@ -39,6 +44,8 @@
             </div>
           </tal:entries>
         </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
 
       </div>
 
