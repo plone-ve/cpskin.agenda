@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.2 (unreleased)
+1.0.2 (2016-07-26)
 ------------------
 
 - Need to unconfigure original daterange widget to make ours available
