@@ -8,8 +8,8 @@ import pytz
 import unittest2 as unittest
 
 from cpskin.agenda.dates import event_dates
-from cpskin.agenda.faceted.views.view import is_in_range
-from cpskin.agenda.faceted.views.view import sort_and_group
+from cpskin.agenda.faceted.views.query import is_in_range
+from cpskin.agenda.faceted.views.query import sort_and_group
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 
 
