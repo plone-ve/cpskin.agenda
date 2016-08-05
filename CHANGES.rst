@@ -4,7 +4,8 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle results per page and pagination on event preview view
+  [laulaz]
 
 
 1.0.3 (2016-08-05)
