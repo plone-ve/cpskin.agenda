@@ -4,7 +4,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Get image scale for events previews from collection setting (if possible)
+  [laulaz]
 
 
 1.0.2 (2016-07-26)

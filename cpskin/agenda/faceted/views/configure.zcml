@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:faceted="http://namespaces.zope.org/faceted">
 
     <faceted:view
@@ -7,6 +8,13 @@
       class=".view.EventsView"
       template="preview-events.pt"
       title="Faceted events preview"
+      permission="zope2.View"
+      />
+
+    <browser:page
+      name="faceted-event-preview-item"
+      for="zope.interface.Interface"
+      template="preview-event.pt"
       permission="zope2.View"
       />
 
