@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.3 (unreleased)
+1.0.3 (2016-08-05)
 ------------------
 
 - Get image scale for events previews from collection setting (if possible)
