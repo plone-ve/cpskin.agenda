@@ -1,6 +1,8 @@
 <configure
     xmlns="http://namespaces.zope.org/zope">
 
+    <include package="cpskin.core" />
+
     <include file="profiles.zcml" />
 
     <include package=".behaviors" />

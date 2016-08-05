@@ -24,16 +24,14 @@
                     <tal:entries repeat="brain singledays">
                         <tal:entry
                           define="doc brain/getObject|nothing"
-                          condition="exists:doc/@@faceted-preview-item"
-                          replace="structure doc/@@faceted-preview-item" />
+                          replace="structure python:self.render_event_preview(doc)" />
                     </tal:entries>
                 </div>
                 <div class="multi-days" tal:condition="multidays">
                     <tal:entries repeat="brain multidays">
                         <tal:entry
                           define="doc brain/getObject|nothing"
-                          condition="exists:doc/@@faceted-preview-item"
-                          replace="structure doc/@@faceted-preview-item" />
+                          replace="structure python:self.render_event_preview(doc)" />
                     </tal:entries>
                 </div>
             </div>
