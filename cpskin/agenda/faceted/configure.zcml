@@ -1,7 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:faceted="http://namespaces.zope.org/faceted"
-    xmlns:monkey="http://namespaces.plone.org/monkey">
+    xmlns:faceted="http://namespaces.zope.org/faceted">
 
     <include package="z3c.unconfigure" file="meta.zcml" />
     <include package="eea.facetednavigation" />

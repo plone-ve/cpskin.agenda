@@ -11,20 +11,20 @@
       <div tal:define="
         self nocall:context/@@faceted-events-preview-items;
         folderContents folderContents | python:context.getFolderContents();
-        results python:self.organize(folderContents);
-        days python: sorted(results.keys());
         Batch python:modules['Products.CMFPlone'].Batch;
         b_start python:request.get('b_start', 0);
-        batch python: Batch(days, self.perPage(), int(b_start));">
+        batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, 100, int(b_start), orphan=2);">
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         <div class="eea-preview-items">
           <tal:entries repeat="day batch">
             <div class="day"
-                 tal:define="singledays python: results[day]['single'];
-                             multidays python: results[day]['multi'];">
-                <span tal:replace="python:day.strftime('%d/%m/%Y')" />
+                 tal:define="values python: day.values()[0];
+                             date python: day.keys()[0];
+                             singledays python: values['single'];
+                             multidays python: values['multi'];">
+                <span tal:replace="python:date.strftime('%d/%m/%Y')" />
                 <div class="single-days" tal:condition="singledays">
                     <tal:entries repeat="brain singledays">
                         <tal:entry
