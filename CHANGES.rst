@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.4 (unreleased)
+1.0.4 (2016-08-05)
 ------------------
 
 - Handle results per page and pagination on event preview view
