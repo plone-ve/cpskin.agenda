@@ -14,6 +14,8 @@ This package is tested using Travis CI. The current status is :
 .. image:: https://travis-ci.org/IMIO/cpskin.agenda.png
     :target: http://travis-ci.org/IMIO/cpskin.agenda
 
+.. image:: https://coveralls.io/repos/github/IMIO/cpskin.agenda/badge.svg?branch=master 
+    :target: https://coveralls.io/github/IMIO/cpskin.agenda?branch=master 
 
 Robot tests
 ===========
