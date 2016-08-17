@@ -13,12 +13,6 @@
         folderContents folderContents | python:context.getFolderContents();
         events python: self.organize(folderContents)">
 
-        <h3 tal:define="limit self/limit"
-            i18n:domain="cpskin"
-            i18n:translate="">
-            Cette vue est limitée aux <span i18n:name="limit" tal:replace="limit" /> jours suivants qui comportent des événements.
-        </h3>
-
         <div class="eea-preview-items">
           <tal:entries repeat="day events">
             <div class="day"
@@ -43,6 +37,13 @@
                 </div>
             </div>
           </tal:entries>
+        </div>
+
+        <div tal:define="limit self/limit"
+             id="events-preview-limit-message"
+             i18n:domain="cpskin"
+             i18n:translate="">
+            Cette vue affiche un maximum de <span i18n:name="limit" tal:replace="limit" /> jours avec événements.
         </div>
 
       </div>

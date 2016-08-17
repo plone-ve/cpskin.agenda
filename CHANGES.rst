@@ -4,6 +4,9 @@ Changelog
 1.1.1 (unreleased)
 ------------------
 
+- Change limit message text and id
+  [laulaz]
+
 - Fix tests
   [laulaz]
 
