@@ -2,8 +2,8 @@
 
 from Products.CMFPlone.PloneBatch import Batch
 from Products.CMFPlone.utils import safeToInt
+from collective.contact.facetednav.browser.view import ContactsFacetedQueryHandler
 from datetime import timedelta
-from eea.facetednavigation.browser.app.query import FacetedQueryHandler
 from eea.facetednavigation.config import ANNO_FACETED_LAYOUT
 from eea.facetednavigation.interfaces import ICriteria
 from eea.facetednavigation.interfaces import IFacetedCatalog
@@ -50,7 +50,7 @@ def sort_and_group(context, brains, start, end):
     return days
 
 
-class QueryHandler(FacetedQueryHandler):
+class QueryHandler(ContactsFacetedQueryHandler):
 
     def organize(self, results):
         if not results:

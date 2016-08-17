@@ -4,7 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Override from collective.contact.facetednav instead of eea.facetednavigation
+  to get actions_enabled working : #14644
+  [laulaz]
 
 
 1.0.4 (2016-08-05)
