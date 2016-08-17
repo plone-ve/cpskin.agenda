@@ -4,7 +4,8 @@ Changelog
 1.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix tests
+  [laulaz]
 
 
 1.1.0 (2016-08-17)
