@@ -11,14 +11,16 @@
       <div tal:define="
         self nocall:context/@@faceted-events-preview-items;
         folderContents folderContents | python:context.getFolderContents();
-        Batch python:modules['Products.CMFPlone'].Batch;
-        b_start python:request.get('b_start', 0);
-        batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, 100, int(b_start), orphan=2);">
+        events python: self.organize(folderContents)">
 
-        <div metal:use-macro="context/batch_macros/macros/navigation" />
+        <h3 tal:define="limit self/limit"
+            i18n:domain="cpskin"
+            i18n:translate="">
+            Cette vue est limitée aux <span i18n:name="limit" tal:replace="limit" /> jours suivants qui comportent des événements.
+        </h3>
 
         <div class="eea-preview-items">
-          <tal:entries repeat="day batch">
+          <tal:entries repeat="day events">
             <div class="day"
                  tal:define="values python: day.values()[0];
                              date python: day.keys()[0];
@@ -42,8 +44,6 @@
             </div>
           </tal:entries>
         </div>
-
-        <div metal:use-macro="context/batch_macros/macros/navigation" />
 
       </div>
 

@@ -4,8 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Override from collective.contact.facetednav instead of eea.facetednavigation
-  to get actions_enabled working : #14644
+- Use collection setting to limit numbers of days displayed in events results.
+  This avoids overriding query() (thus fixes #14644) and remove the need for
+  batching, as well as fixing #14646.
   [laulaz]
 
 

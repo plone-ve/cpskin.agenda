@@ -3,17 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:faceted="http://namespaces.zope.org/faceted">
 
-    <configure package="collective.contact.facetednav.browser">
-      <browser:page
-        for="eea.facetednavigation.interfaces.IFacetedNavigable"
-        name="faceted_query"
-        class="cpskin.agenda.faceted.views.query.QueryHandler"
-        template="query.pt"
-        permission="zope2.View"
-        layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
-        />
-    </configure>
-
     <faceted:view
       name="faceted-events-preview-items"
       class=".view.EventsView"
