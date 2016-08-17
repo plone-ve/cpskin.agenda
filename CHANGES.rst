@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.5 (unreleased)
+1.1.0 (2016-08-17)
 ------------------
 
 - Use collection setting to limit numbers of days displayed in events results.
