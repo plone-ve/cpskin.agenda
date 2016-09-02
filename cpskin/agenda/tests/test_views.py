@@ -81,7 +81,7 @@ class TestViews(unittest.TestCase):
             type='Event',
             id='event')
         self.event.timezone = timezone
-        self.event.location = "Mon adresse"
+        self.event.location = u"Mon adresse"
         eventbasic = IEventBasic(self.event)
         eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
         eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)
