@@ -4,6 +4,9 @@ Changelog
 1.1.1 (unreleased)
 ------------------
 
+- Add more_occurrences_text property.
+  [bsuttor]
+
 - Change limit message text and id
   [laulaz]
 

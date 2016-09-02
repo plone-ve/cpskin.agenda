@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
+from cpskin.locales import CPSkinMessageFactory as _
 from plone.app.event.browser.event_summary import EventSummaryView
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import queryUtility
-from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
 
 
 class EventContactSummaryView(EventSummaryView):
@@ -40,3 +41,12 @@ class EventContactSummaryView(EventSummaryView):
             return True
         else:
             return False
+
+    @property
+    def more_occurrences_text(self):
+        msgid = _(
+            u"msg_num_more_occurrences",
+            default=u"Il y a ${results} occurrence(s) en plus.",
+            mapping={u"results": self.num_more_occurrences}
+        )
+        return self.context.translate(msgid)
