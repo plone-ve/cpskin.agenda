@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.2 (unreleased)
+1.1.2 (2016-09-02)
 ------------------
 
 - View field when related contact behavior is not enable.
