@@ -2,6 +2,7 @@
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.app.event.browser.event_summary import EventSummaryView
+from plone.app.event.browser.event_view import get_location
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import queryUtility
 
@@ -24,7 +25,10 @@ class EventContactSummaryView(EventSummaryView):
         if not getattr(self.context, 'location', None):
             return None
         else:
-            return self.context.location.to_object
+            if isinstance(self.context.location, unicode):
+                return get_location(self.context)
+            else:
+                return self.context.location.to_object
 
     def get_partners(self):
         if not getattr(self.context, 'partners', None):

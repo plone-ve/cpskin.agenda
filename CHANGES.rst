@@ -4,7 +4,8 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- View field when related contact behavior is not enable.
+  [bsuttor]
 
 
 1.1.1 (2016-09-02)
