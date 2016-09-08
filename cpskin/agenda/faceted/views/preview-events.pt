@@ -20,7 +20,7 @@
                              date python: day.keys()[0];
                              singledays python: values['single'];
                              multidays python: values['multi'];">
-                <span tal:replace="python:date.strftime('%d/%m/%Y')" />
+                <div class="day-date" tal:content="python:date.strftime('%d/%m/%Y')" />
                 <div class="single-days" tal:condition="singledays">
                     <tal:entries repeat="brain singledays">
                         <tal:entry

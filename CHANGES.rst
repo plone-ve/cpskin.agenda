@@ -4,7 +4,8 @@ Changelog
 1.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Minor HTML change to ease styling
+  [laulaz]
 
 
 1.1.2 (2016-09-02)
