@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.3 (unreleased)
+1.1.3 (2016-09-08)
 ------------------
 
 - Minor HTML change to ease styling
