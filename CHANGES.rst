@@ -4,7 +4,8 @@ Changelog
 1.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix accented character for i18n extraction
+  [mpeeters]
 
 
 1.1.3 (2016-09-08)
