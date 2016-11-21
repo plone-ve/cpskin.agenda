@@ -4,6 +4,9 @@ Changelog
 1.1.4 (unreleased)
 ------------------
 
+- Fix not working limit parameter on events view : #15517
+  [laulaz]
+
 - Fix accented character for i18n extraction
   [mpeeters]
 

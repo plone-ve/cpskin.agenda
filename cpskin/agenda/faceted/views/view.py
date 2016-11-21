@@ -3,6 +3,7 @@
 from Products.Five.browser import BrowserView
 from datetime import timedelta
 from plone import api
+from plone.app.contenttypes.behaviors.collection import ICollection
 from zope.component import getMultiAdapter
 
 
@@ -43,7 +44,7 @@ class EventsView(BrowserView):
 
     @property
     def limit(self):
-        limit = getattr(self.context, 'limit', 15)
+        limit = ICollection(self.context).limit
         return limit
 
     def organize(self, results):
