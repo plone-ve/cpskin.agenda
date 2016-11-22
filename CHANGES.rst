@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.4 (unreleased)
+1.1.4 (2016-11-22)
 ------------------
 
 - Fix not working limit parameter on events view : #15517
