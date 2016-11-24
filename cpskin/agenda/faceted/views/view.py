@@ -61,7 +61,7 @@ class EventsView(BrowserView):
             startDate = criteria['end']['query'].asdatetime().date()
             # Faceted use previous day at 23:59:59 for its query
             startDate = startDate + timedelta(days=1)
-        if not startDate:
+        else:
             # By default we show only future events
             startDate = date.today()
         results = sort_and_group(self.context, results, startDate, endDate)
