@@ -4,7 +4,9 @@ Changelog
 1.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- By default (if no search criteria), faceted-events-preview-items will show
+  only future events : #15531
+  [laulaz]
 
 
 1.1.4 (2016-11-22)

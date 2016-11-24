@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Products.Five.browser import BrowserView
+from datetime import date
 from datetime import timedelta
 from plone import api
 from plone.app.contenttypes.behaviors.collection import ICollection
@@ -26,15 +27,15 @@ def sort_and_group(context, brains, start, end):
         idx = catalog.getIndexDataForRID(rid)
         allDates = idx['event_dates']
         multiDays = len(allDates) > 1 and 'multi' or 'single'
-        for date in allDates:
-            if not is_in_range(date, start, end):
+        for evendDate in allDates:
+            if not is_in_range(evendDate, start, end):
                 continue
-            if date in days:
-                days[date][multiDays].append(brain)
+            if evendDate in days:
+                days[evendDate][multiDays].append(brain)
             else:
-                days[date] = {'single': [],
-                              'multi': []}
-                days[date][multiDays].append(brain)
+                days[evendDate] = {'single': [],
+                                   'multi': []}
+                days[evendDate][multiDays].append(brain)
     return days
 
 
@@ -60,6 +61,9 @@ class EventsView(BrowserView):
             startDate = criteria['end']['query'].asdatetime().date()
             # Faceted use previous day at 23:59:59 for its query
             startDate = startDate + timedelta(days=1)
+        if not startDate:
+            # By default we show only future events
+            startDate = date.today()
         results = sort_and_group(self.context, results, startDate, endDate)
         resultsByDaysList = [{d: l} for d, l in results.items()]
         resultsByDaysList = sorted(resultsByDaysList)
