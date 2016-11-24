@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.5 (unreleased)
+1.1.5 (2016-11-24)
 ------------------
 
 - By default (if no search criteria), faceted-events-preview-items will show
