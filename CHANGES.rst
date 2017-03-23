@@ -4,7 +4,9 @@ Changelog
 1.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add new agenda faceted view and use same markup as index view
+  Old faceted-events-preview-items is kept until all the sites are migrated
+  [laulaz]
 
 
 1.1.5 (2016-11-24)

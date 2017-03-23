@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea">
+
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:block define-macro="content-core">
+      <div tal:define="
+        self nocall:context/@@faceted-agenda-view-items;
+        folderContents folderContents | python:context.getFolderContents();
+        events python: self.organize(folderContents)">
+
+        <div class="faceted-agenda-view">
+          <tal:entries repeat="day events">
+            <div class="day"
+                 tal:define="values python: day.values()[0];
+                             date python: day.keys()[0];
+                             singledays python: values['single'];
+                             multidays python: values['multi'];">
+                <div class="day-date" tal:content="python:date.strftime('%d/%m/%Y')" />
+                <div class="single-days" tal:condition="singledays">
+                    <tal:entries repeat="brain singledays">
+                        <tal:entry
+                          define="doc brain/getObject|nothing"
+                          replace="structure python:self.render_event_preview(doc)" />
+                    </tal:entries>
+                </div>
+                <div class="multi-days" tal:condition="multidays">
+                    <tal:entries repeat="brain multidays">
+                        <tal:entry
+                          define="doc brain/getObject|nothing"
+                          replace="structure python:self.render_event_preview(doc)" />
+                    </tal:entries>
+                </div>
+            </div>
+          </tal:entries>
+        </div>
+
+        <div tal:define="limit self/limit"
+             id="agenda-view-limit-message"
+             i18n:domain="cpskin"
+             i18n:translate="">
+            Un maximum de <span i18n:name="limit" tal:replace="limit" /> jours comprenant des &eacute;v&eacute;nements est affich&eacute;.
+        </div>
+
+      </div>
+
+    </metal:block>
+  </metal:content-core>
+</body>
+</html>

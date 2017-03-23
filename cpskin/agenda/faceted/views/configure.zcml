@@ -3,6 +3,10 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:faceted="http://namespaces.zope.org/faceted">
 
+    <!--
+      Legacy views - will be removed when all the themes have been modified
+    -->
+
     <faceted:view
       name="faceted-events-preview-items"
       class=".view.EventsView"
@@ -21,4 +25,26 @@
       />
 
 
+    <!--
+      New views :
+      faceted-agenda-view-items will replace faceted-events-preview-items
+    -->
+
+   <faceted:view
+     name="faceted-agenda-view-items"
+     class=".view.EventsView"
+     template="view-agenda.pt"
+     title="Faceted agenda view"
+     permission="zope2.View"
+     layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
+     />
+   
+   <browser:page
+     name="faceted-agenda-view-item"
+     for="zope.interface.Interface"
+     template="view-agenda-item.pt"
+     permission="zope2.View"
+     layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
+     />
+   
 </configure>

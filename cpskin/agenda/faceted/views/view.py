@@ -74,6 +74,11 @@ class EventsView(BrowserView):
         request = self.request
         scale = getattr(context, 'collection_image_scale', 'thumb')
         request['scale'] = scale
+        render_view = u'faceted-agenda-view-item'
+        if self.__name__ == 'faceted-events-preview-items':
+            # This will be removed when aceted-agenda-view-items will totally
+            # replace faceted-events-preview-items
+            render_view = u'faceted-event-preview-item'
         view = getMultiAdapter((obj, request),
-                                name=u'faceted-event-preview-item')
+                                name=render_view)
         return view and view() or ''
