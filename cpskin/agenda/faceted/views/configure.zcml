@@ -20,11 +20,5 @@
       layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
       />
 
-    <browser:page
-      name="faceted-event-preview-item"
-      for="zope.interface.Interface"
-      template="preview-event.pt"
-      permission="zope2.View"
-      />
 
 </configure>
