@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-
-from datetime import date
-from datetime import datetime
-from plone import api
-from plone.app.event.dx.behaviors import IEventRecurrence
-import pytz
-import unittest2 as unittest
-
 from cpskin.agenda.dates import event_dates
 from cpskin.agenda.faceted.views.view import is_in_range
 from cpskin.agenda.faceted.views.view import sort_and_group
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
+from datetime import date
+from datetime import datetime
+from plone import api
+from plone.app.event.dx.behaviors import IEventRecurrence
+
+import pytz
+import unittest2 as unittest
 
 
 def createEvent(folder, id, start, end, whole_day=False):
@@ -84,8 +83,10 @@ class TestEventSearch(unittest.TestCase):
         self.assertEqual(len(brains), 1)
         result = sort_and_group(self.folder, brains, None, None)
         self.assertTrue(len(result), 4)
-        self.assertTrue(same(result.keys(), [date(2001, 1, 2), date(2001, 1, 3),
-                                             date(2001, 1, 4), date(2001, 1, 5)]))
+        self.assertTrue(same(
+            result.keys(),
+            [date(2001, 1, 2), date(2001, 1, 3),
+             date(2001, 1, 4), date(2001, 1, 5)]))
         self.assertEqual(len(result.values()[0]['single']), 0)
         self.assertEqual(len(result.values()[0]['multi']), 1)
 

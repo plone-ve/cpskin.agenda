@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-
 from plone.app.contenttypes.interfaces import IEvent
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from zope import schema
 from zope.component import adapter
-from zope.interface import Interface
 from zope.interface import implementer
+from zope.interface import Interface
 from zope.interface import provider
 
 

@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-
 from collective.js.jqueryui.viewlet import L10nDatepicker
-from eea.facetednavigation.widgets.daterange.widget import Widget as BaseWidget
-
 from cpskin.locales import CPSkinMessageFactory as _
+from eea.facetednavigation.widgets.daterange.widget import Widget as BaseWidget
 
 
 class Widget(BaseWidget, L10nDatepicker):

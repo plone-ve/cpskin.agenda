@@ -4,11 +4,11 @@ from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-from zope.interface import alsoProvides
+from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import queryUtility
+from zope.interface import alsoProvides
 
 import unittest
 

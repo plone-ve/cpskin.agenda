@@ -7,7 +7,8 @@ from cpskin.core.utils import add_behavior
 from plone import api
 from plone.app.event.dx.behaviors import IEventBasic
 from plone.app.testing import applyProfile
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.schemaeditor.utils import FieldAddedEvent
 from plone.schemaeditor.utils import IEditableSchema
 from z3c.relationfield.relation import RelationValue
@@ -88,7 +89,7 @@ class TestViews(unittest.TestCase):
             type='Event',
             id='event')
         self.event.timezone = timezone
-        self.event.location = u"Mon adresse"
+        self.event.location = u'Mon adresse'
         eventbasic = IEventBasic(self.event)
         eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
         eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)

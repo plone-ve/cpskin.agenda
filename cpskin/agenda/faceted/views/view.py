@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
-from Products.Five.browser import BrowserView
 from datetime import date
 from datetime import timedelta
 from plone import api
 from plone.app.contenttypes.behaviors.collection import ICollection
+from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 
 
@@ -79,6 +78,5 @@ class EventsView(BrowserView):
             # This will be removed when aceted-agenda-view-items will totally
             # replace faceted-events-preview-items
             render_view = u'faceted-event-preview-item'
-        view = getMultiAdapter((obj, request),
-                                name=render_view)
+        view = getMultiAdapter((obj, request), name=render_view)
         return view and view() or ''

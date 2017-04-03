@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 from datetime import timedelta
 from plone.app.contenttypes.interfaces import IEvent
-from plone.app.event.base import RET_MODE_ACCESSORS
 from plone.app.event.base import expand_events
+from plone.app.event.base import RET_MODE_ACCESSORS
 from plone.indexer import indexer
 
 

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
+from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import applyProfile
-import unittest2 as unittest
 
-from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
+import unittest2 as unittest
 
 
 class TestProfiles(unittest.TestCase):

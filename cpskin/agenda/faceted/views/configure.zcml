@@ -24,7 +24,6 @@
       layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
       />
 
-
     <!--
       New views :
       faceted-agenda-view-items will replace faceted-events-preview-items
@@ -38,7 +37,7 @@
      permission="zope2.View"
      layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
      />
-   
+
    <browser:page
      name="faceted-agenda-view-item"
      for="zope.interface.Interface"
@@ -46,5 +45,5 @@
      permission="zope2.View"
      layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
      />
-   
+
 </configure>

@@ -53,9 +53,9 @@ class EventContactSummaryView(EventSummaryView):
     @property
     def more_occurrences_text(self):
         msgid = _(
-            u"msg_num_more_occurrences",
-            default=u"Il y a ${results} occurrence(s) en plus.",
-            mapping={u"results": self.num_more_occurrences}
+            u'msg_num_more_occurrences',
+            default=u'Il y a ${results} occurrence(s) en plus.',
+            mapping={u'results': self.num_more_occurrences}
         )
         return self.context.translate(msgid)
 
