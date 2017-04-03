@@ -4,6 +4,9 @@ Changelog
 1.1.6 (unreleased)
 ------------------
 
+- Add taxonomies to event_summary view.
+  [bsuttor]
+
 - Add new agenda faceted view and use same markup as index view
   Old faceted-events-preview-items is kept until all the sites are migrated
   [laulaz]

@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
 from cpskin.locales import CPSkinMessageFactory as _
+from plone import api
 from plone.app.event.browser.event_summary import EventSummaryView
 from plone.app.event.browser.event_view import get_location
 from plone.dexterity.interfaces import IDexterityFTI
+from zope.component import getUtility
 from zope.component import queryUtility
+from zope.schema import getFieldsInOrder
+from zope.schema.interfaces import IVocabularyFactory
 
 
 class EventContactSummaryView(EventSummaryView):
@@ -38,7 +42,7 @@ class EventContactSummaryView(EventSummaryView):
             return partners
 
     def enabled(self):
-        """Check if behavior is enabled"""
+        """Check if IRelatedContacts behavior is enabled"""
         fti = queryUtility(IDexterityFTI, name='Event')
         behaviors = list(fti.behaviors)
         if IRelatedContacts.__identifier__ in behaviors:
@@ -54,3 +58,28 @@ class EventContactSummaryView(EventSummaryView):
             mapping={u"results": self.num_more_occurrences}
         )
         return self.context.translate(msgid)
+
+    def get_taxonomies(self):
+        """Return all field added by taxonomies"""
+        portal_type = 'Event'
+        schema = getUtility(IDexterityFTI, name=portal_type).lookupSchema()
+        fields = getFieldsInOrder(schema)
+        taxonomies = []
+        for name, field in fields:
+            if name.startswith('taxonomy_') and field:
+                vocabulary_name = field.value_type.vocabularyName
+                factory = getUtility(IVocabularyFactory, vocabulary_name)
+                vocabulary = factory(api.portal.get())
+                tokens = getattr(self.context, name, '')
+                if not tokens:
+                    continue
+                categories = []
+                for token in tokens:
+                    cat = vocabulary.inv_data.get(token)
+                    categories.append(cat[1:])
+                categories.sort()
+                tax = {}
+                tax['name'] = field.title
+                tax['value'] = ', '.join(categories)
+                taxonomies.append(tax)
+        return taxonomies

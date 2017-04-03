@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
 from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
@@ -7,11 +8,17 @@ from plone import api
 from plone.app.event.dx.behaviors import IEventBasic
 from plone.app.testing import applyProfile
 from plone.app.testing import TEST_USER_ID, setRoles
+from plone.schemaeditor.utils import FieldAddedEvent
+from plone.schemaeditor.utils import IEditableSchema
+from z3c.relationfield.relation import RelationValue
+from zope import schema
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryUtility
+from zope.event import notify
 from zope.interface import directlyProvides
 from zope.intid.interfaces import IIntIds
-from z3c.relationfield.relation import RelationValue
+from zope.lifecycleevent import ObjectAddedEvent
 
 import datetime
 import unittest
@@ -141,3 +148,41 @@ class TestViews(unittest.TestCase):
         rv = RelationValue(to_id)
         self.event.location = rv
         self.assertIn('Location', view())
+
+    def test_taxonmies_field_visible(self):
+        applyProfile(self.portal, 'collective.taxonomy:default')
+
+        utility = queryUtility(ITaxonomy, name='collective.taxonomy.test')
+        taxonomy_test = schema.Set(
+            title=u'taxonomy_test',
+            description=u'taxonomy description schema',
+            required=False,
+            value_type=schema.Choice(
+                vocabulary=u'collective.taxonomy.test'),
+        )
+        portal_types = api.portal.get_tool('portal_types')
+        fti = portal_types.get('Event')
+        event_schema = fti.lookupSchema()
+        schemaeditor = IEditableSchema(event_schema)
+        schemaeditor.addField(taxonomy_test, name='taxonomy_test')
+        notify(ObjectAddedEvent(taxonomy_test, event_schema))
+        notify(FieldAddedEvent(fti, taxonomy_test))
+        event = api.content.create(self.portal, 'Event', 'testevent')
+        simple_tax = [val for val in utility.data['en'].values()]
+        event.taxonomy_test = set(simple_tax[0])
+
+        view = getMultiAdapter(
+            (event, self.portal.REQUEST), name='event_summary')
+
+        taxonomies = view.get_taxonomies()
+        self.assertEqual(taxonomies[0]['value'], 'Information Science')
+
+        event.taxonomy_test = set(simple_tax[0:2])
+        taxonomies = view.get_taxonomies()
+        self.assertEqual(
+            taxonomies[0]['value'],
+            'Information Science, Information Science/Book Collecting')
+
+        event.taxonomy_test = set()
+        taxonomies = view.get_taxonomies()
+        self.assertEqual(len(taxonomies), 0)

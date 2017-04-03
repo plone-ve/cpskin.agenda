@@ -6,6 +6,7 @@
   <include package="plone.app.event" />
   <include package="eea.facetednavigation" file="meta.zcml" />
   <include package="collective.contact.core" />
+  <include package="collective.taxonomy" />
 
   <include file="configure.zcml" />
 

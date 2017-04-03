@@ -47,10 +47,13 @@ setup(name='cpskin.agenda',
           'eea.facetednavigation',
           'cpskin.locales',
           'cpskin.core',
+          'collective.taxonomy',
       ],
       extras_require={
           'test': [
               'plone.app.robotframework',
+              'Products.contentmigration',
+              'plone.app.multilingual',
           ]
       },
       entry_points={},

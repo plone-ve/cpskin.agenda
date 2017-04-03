@@ -115,6 +115,13 @@
               </li>
             </ul>
           </li>
+          <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
+                         tal:condition='taxonomies'>
+            <li tal:repeat="taxonomy taxonomies">
+              <strong tal:content='taxonomy/name'></strong>
+              <span tal:content='taxonomy/value'></span>
+            </li>
+          </tal:condition>
         </tal:block>
 
         <tal:block tal:condition="not: view/enabled">
@@ -152,6 +159,13 @@
                 <div itemprop="attendee" class="attendee" tal:repeat="item data/attendees" tal:content="item"/>
               </li>
             </tal:cond>
+            <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
+                           tal:condition='taxonomies'>
+              <li tal:repeat="taxonomy taxonomies">
+                <strong tal:content='taxonomy/name'></strong>
+                <span tal:content='taxonomy/value'></span>
+              </li>
+            </tal:condition>
           </tal:cond>
         </tal:block>
 
