@@ -24,6 +24,7 @@
       layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
       />
 
+
     <!--
       New views :
       faceted-agenda-view-items will replace faceted-events-preview-items
@@ -33,7 +34,7 @@
      name="faceted-agenda-view-items"
      class=".view.EventsView"
      template="view-agenda.pt"
-     title="Faceted agenda view"
+     title="Faceted agenda view (grouped by day)"
      permission="zope2.View"
      layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
      />
@@ -46,4 +47,25 @@
      layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
      />
 
+    <!--
+      View with ungrouped (per day) events
+    -->
+
+   <faceted:view
+     name="faceted-agenda-ungrouped-view-items"
+     class=".view.EventsView"
+     template="view-agenda-ungrouped.pt"
+     title="Faceted agenda view (ungrouped)"
+     permission="zope2.View"
+     layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
+     />
+   
+   <browser:page
+     name="faceted-agenda-ungrouped-view-item"
+     for="zope.interface.Interface"
+     template="view-agenda-ungrouped-item.pt"
+     permission="zope2.View"
+     layer="cpskin.agenda.interfaces.ICPSkinAgendaLayer"
+     />
+   
 </configure>

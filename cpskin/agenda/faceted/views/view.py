@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from datetime import timedelta
+from eea.facetednavigation.interfaces import ICriteria
 from plone import api
 from plone.app.contenttypes.behaviors.collection import ICollection
 from Products.Five.browser import BrowserView
@@ -68,6 +69,18 @@ class EventsView(BrowserView):
         resultsByDaysList = sorted(resultsByDaysList)
         return resultsByDaysList[:self.limit]
 
+    def perPage(self):
+        num_per_page = 20
+        criteria = ICriteria(self.context)
+        for cid, criterion in criteria.items():
+            widgetclass = criteria.widget(cid=cid)
+            widget = widgetclass(self.context, self.request, criterion)
+            if widget.widget_type == 'resultsperpage':
+                kwargs = dict((key.replace('[]', ''), val)
+                              for key, val in self.request.form.items())
+                num_per_page = widget.results_per_page(kwargs)
+        return num_per_page
+
     def render_event_preview(self, obj):
         context = self.context
         request = self.request
@@ -78,5 +91,7 @@ class EventsView(BrowserView):
             # This will be removed when aceted-agenda-view-items will totally
             # replace faceted-events-preview-items
             render_view = u'faceted-event-preview-item'
+        elif self.__name__ == 'faceted-agenda-ungrouped-view-items':
+            render_view = u'faceted-agenda-ungrouped-view-item'
         view = getMultiAdapter((obj, request), name=render_view)
         return view and view() or ''

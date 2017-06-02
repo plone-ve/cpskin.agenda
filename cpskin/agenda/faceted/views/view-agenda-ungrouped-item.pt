@@ -1,0 +1,29 @@
+<div class="event-entry"
+  tal:define="portal_type context/portal_type;
+              useViewTypes context/portal_properties/site_properties/typesUseViewActionInListings;
+              useView python:portal_type in useViewTypes;
+              scale request/scale;">
+  <a tal:define="
+      description context/Description|string:;
+      title context/pretty_title_or_id|string:;
+      url context/absolute_url|string:#;
+      view_url python:(url and useView and url + '/view') or url;"
+     tal:attributes="href view_url;
+                     title description">
+
+    <div class="pageleadImage"
+         style=""
+         tal:define="scaled_image_url string:$url/@@images/image/${scale}"
+         tal:attributes="style string:background-image: url(${scaled_image_url})">
+    </div>
+
+    <div class="pagecaption">
+
+     <h3 tal:content="title"></h3>
+     <span tal:replace="context/start" />
+     <span tal:replace="context/end" />
+
+    </div>
+
+  </a>
+</div>
