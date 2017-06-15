@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.6 (unreleased)
+1.1.6 (2017-06-15)
 ------------------
 
 - Add taxonomies to event_summary view.
