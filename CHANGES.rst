@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.7 (unreleased)
+1.1.7 (2017-06-21)
 ------------------
 
 - Fix get taxonomy value when token is no more an id.
