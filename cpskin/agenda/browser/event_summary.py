@@ -67,7 +67,10 @@ class EventContactSummaryView(EventSummaryView):
         taxonomies = []
         for name, field in fields:
             if name.startswith('taxonomy_') and field:
-                vocabulary_name = field.value_type.vocabularyName
+                if getattr(field, 'value_type', None):
+                    vocabulary_name = field.value_type.vocabularyName
+                else:
+                    vocabulary_name = field.vocabularyName
                 factory = getUtility(IVocabularyFactory, vocabulary_name)
                 vocabulary = factory(api.portal.get())
                 tokens = getattr(self.context, name, '')
@@ -75,8 +78,9 @@ class EventContactSummaryView(EventSummaryView):
                     continue
                 categories = []
                 for token in tokens:
-                    cat = vocabulary.inv_data.get(token)
-                    categories.append(cat[1:])
+                    if token in vocabulary.inv_data.keys():
+                        cat = vocabulary.inv_data.get(token)
+                        categories.append(cat[1:])
                 categories.sort()
                 tax = {}
                 tax['name'] = field.title

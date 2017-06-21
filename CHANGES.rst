@@ -4,7 +4,8 @@ Changelog
 1.1.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix get taxonomy value when token is no more an id.
+  [bsuttor]
 
 
 1.1.6 (2017-06-15)
