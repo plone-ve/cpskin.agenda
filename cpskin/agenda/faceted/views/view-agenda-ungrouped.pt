@@ -14,7 +14,7 @@
         events python: self.organize_ungrouped(folderContents);
         Batch python:modules['Products.CMFPlone'].Batch;
         b_start python:request.get('b_start', 0);
-        batch python:isinstance(events, Batch) and events or Batch(events, 100, int(b_start), orphan=2);">
+        batch python:isinstance(events, Batch) and events or Batch(events, self.perPage(), int(b_start), orphan=2);">
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
 
