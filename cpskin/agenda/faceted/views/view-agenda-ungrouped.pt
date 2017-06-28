@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea">
+
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:block define-macro="content-core">
+      <div tal:define="
+        self nocall:context/@@faceted-agenda-ungrouped-view-items;
+        folderContents folderContents | python:context.getFolderContents();
+        events python: self.organize_ungrouped(folderContents);
+        Batch python:modules['Products.CMFPlone'].Batch;
+        b_start python:request.get('b_start', 0);
+        batch python:isinstance(events, Batch) and events or Batch(events, 100, int(b_start), orphan=2);">
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+        <div class="faceted-agenda-ungrouped-view">
+          <tal:entries repeat="brain batch">
+            <tal:entry
+              define="doc brain/getObject|nothing"
+              replace="structure python:self.render_event_preview(doc)" />
+          </tal:entries>
+        </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+      </div>
+
+    </metal:block>
+  </metal:content-core>
+</body>
+</html>

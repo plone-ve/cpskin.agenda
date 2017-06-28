@@ -4,7 +4,8 @@ Changelog
 1.1.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add new agenda 'ungrouped events' faceted view with special sort order
+  [laulaz]
 
 
 1.1.7 (2017-06-21)

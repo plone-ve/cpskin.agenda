@@ -15,6 +15,27 @@ def is_in_range(date, start, end):
     return True
 
 
+def sort_ungrouped(brain, searchedStartDate, searchedEndDate):
+    """
+    We need to sort events by start date with this order :
+      1. one-day event
+      2. multi days events starting on the searched start date
+         (first end first)
+      3. multi days events starting before the searched start date
+         (first end first)
+    """
+    catalog = api.portal.get_tool('portal_catalog')
+    rid = brain.getRID()
+    idx = catalog.getIndexDataForRID(rid)
+    allDates = idx['event_dates']
+    if len(allDates) == 1:
+        return allDates[0], 0, 0
+    elif allDates[0] == searchedStartDate:
+        return searchedStartDate, 1, 0
+    else:
+        return searchedStartDate, 1, searchedEndDate - searchedStartDate
+
+
 def sort_and_group(context, brains, start, end):
     """
     We need to group by day and separate one-day and multi-days events
@@ -47,9 +68,7 @@ class EventsView(BrowserView):
         limit = ICollection(self.context).limit
         return limit
 
-    def organize(self, results):
-        if not results:
-            return {}
+    def get_criteria_dates(self):
         startDate = None
         endDate = None
         handler = getMultiAdapter((self.context, self.request),
@@ -63,6 +82,24 @@ class EventsView(BrowserView):
         else:
             # By default we show only future events
             startDate = date.today()
+        return startDate, endDate
+
+    def organize_ungrouped(self, results):
+        if not results:
+            return {}
+        startDate, endDate = self.get_criteria_dates()
+
+        results = [r for r in results]  # Unbatch if needed
+        sorted(
+            results,
+            key=lambda brain: sort_ungrouped(brain, startDate, endDate)
+        )
+        return results[:self.limit]
+
+    def organize(self, results):
+        if not results:
+            return {}
+        startDate, endDate = self.get_criteria_dates()
         results = sort_and_group(self.context, results, startDate, endDate)
         resultsByDaysList = [{d: l} for d, l in results.items()]
         resultsByDaysList = sorted(resultsByDaysList)
@@ -78,5 +115,7 @@ class EventsView(BrowserView):
             # This will be removed when aceted-agenda-view-items will totally
             # replace faceted-events-preview-items
             render_view = u'faceted-event-preview-item'
+        elif self.__name__ == 'faceted-agenda-ungrouped-view-items':
+            render_view = u'faceted-agenda-ungrouped-view-item'
         view = getMultiAdapter((obj, request), name=render_view)
         return view and view() or ''
