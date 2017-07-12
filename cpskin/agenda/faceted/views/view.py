@@ -28,13 +28,13 @@ def sort_ungrouped(brain, searchedStartDate, searchedEndDate):
     catalog = api.portal.get_tool('portal_catalog')
     rid = brain.getRID()
     idx = catalog.getIndexDataForRID(rid)
-    allDates = idx['event_dates']
+    allDates = sorted(idx['event_dates'])
     if len(allDates) == 1:
         return allDates[0], 0, 0
     elif allDates[0] == searchedStartDate:
         return searchedStartDate, 1, 0
     else:
-        return searchedStartDate, 1, searchedEndDate - searchedStartDate
+        return searchedStartDate, 1, (allDates[-1] - searchedStartDate).days
 
 
 def sort_and_group(context, brains, start, end):
