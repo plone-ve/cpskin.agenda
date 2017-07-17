@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.8 (unreleased)
+1.1.8 (2017-07-17)
 ------------------
 
 - Add new agenda 'ungrouped events' faceted view with special sort order
