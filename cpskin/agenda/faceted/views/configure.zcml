@@ -1,7 +1,8 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:faceted="http://namespaces.zope.org/faceted">
+    xmlns:faceted="http://namespaces.zope.org/faceted"
+    i18n_domain="cpskin">
 
     <!--
       Legacy views - will be removed when all the themes have been modified

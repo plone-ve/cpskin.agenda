@@ -4,7 +4,8 @@ Changelog
 1.1.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add missing i18n zcml header.
+  [bsuttor]
 
 
 1.1.8 (2017-07-17)
