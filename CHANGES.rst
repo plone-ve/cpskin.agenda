@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.9 (unreleased)
+1.1.9 (2017-07-26)
 ------------------
 
 - Add missing i18n zcml header.
