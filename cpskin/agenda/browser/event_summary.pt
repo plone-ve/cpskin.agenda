@@ -29,8 +29,10 @@
           </tal:cond>
         </tal:cond>
 
+        <li class="event-date-dates">
+          <ul>
         <tal:cond condition="python:'date' not in excludes">
-          <li class="event-date">
+              <li class="event-date">
             <strong i18n:translate="event_when">When</strong>
             <span tal:define="start_tzname data/timezone;
                       start_utcdelta python:data.start.tzinfo.utcoffset(data.start);
@@ -44,8 +46,8 @@
           </li>
         </tal:cond>
 
-        <tal:cond condition="python:'occurrences' not in excludes">
-          <tal:cond define="next_occs view/next_occurrences;
+        <tal:condi condition="python:'occurrences' not in excludes">
+          <tal:block define="next_occs view/next_occurrences;
                       all_occs view/num_more_occurrences" condition="python:len(next_occs) > 1 or all_occs > 1">
             <li class="event-dates">
               <strong i18n:translate="">
@@ -66,8 +68,10 @@
                 </a>
               </span>
             </li>
-          </tal:cond>
-        </tal:cond>
+          </tal:block>
+        </tal:condi>
+      </ul>
+    </li>
 
         <tal:cond condition="python:'event_url' not in excludes">
           <tal:cond condition="data/event_url">
