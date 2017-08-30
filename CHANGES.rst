@@ -4,7 +4,8 @@ Changelog
 1.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix events unbatching : #18540
+  [laulaz]
 
 
 1.1.9 (2017-07-26)

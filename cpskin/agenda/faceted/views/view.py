@@ -4,6 +4,7 @@ from datetime import timedelta
 from eea.facetednavigation.interfaces import ICriteria
 from plone import api
 from plone.app.contenttypes.behaviors.collection import ICollection
+from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 
@@ -90,7 +91,8 @@ class EventsView(BrowserView):
             return {}
         startDate, endDate = self.get_criteria_dates()
 
-        results = [r for r in results]  # Unbatch if needed
+        if isinstance(results, Batch):  # Unbatch if needed
+            results = results._sequence
         sorted(
             results,
             key=lambda brain: sort_ungrouped(brain, startDate, endDate)
@@ -100,6 +102,8 @@ class EventsView(BrowserView):
     def organize(self, results):
         if not results:
             return {}
+        if isinstance(results, Batch):  # Unbatch if needed
+            results = results._sequence
         startDate, endDate = self.get_criteria_dates()
         results = sort_and_group(self.context, results, startDate, endDate)
         resultsByDaysList = [{d: l} for d, l in results.items()]
