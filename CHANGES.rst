@@ -4,7 +4,8 @@ Changelog
 1.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check if taxonomies are list or string.
+  [bsuttor]
 
 
 1.1.10 (2017-08-30)

@@ -76,6 +76,8 @@ class EventContactSummaryView(EventSummaryView):
                 tokens = getattr(self.context, name, '')
                 if not tokens:
                     continue
+                if not isinstance(tokens, basestring):
+                    tokens = [tokens]
                 categories = []
                 for token in tokens:
                     if token in vocabulary.inv_data.keys():
