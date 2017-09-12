@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.13 (unreleased)
+1.1.13 (2017-09-12)
 -------------------
 
 - Add a class on li of contact in event_summary view.
