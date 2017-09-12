@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.12 (unreleased)
+1.1.12 (2017-09-12)
 -------------------
 
 - Set ical at the end of event summary view.
