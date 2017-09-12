@@ -80,7 +80,7 @@ class TestViews(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        directlyProvides(self.request, ICPSkinAgendaLayer)
+        directlyProvides(self.request, ICPSkinAgendaLayer)  # noqa
 
     def test_event_view_without_behavior(self):
         timezone = 'Europe/Brussels'

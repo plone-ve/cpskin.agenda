@@ -3,8 +3,8 @@ from collective.js.jqueryui.utils import get_datepicker_date_format
 from collective.js.jqueryui.utils import get_python_date_format
 from collective.js.jqueryui.viewlet import L10nDatepicker
 from cpskin.locales import CPSkinMessageFactory as _
-from datetime import datetime
 from DateTime import DateTime
+from datetime import datetime
 from eea.facetednavigation.widgets import ViewPageTemplateFile
 from eea.facetednavigation.widgets.widget import Widget as AbstractWidget
 
