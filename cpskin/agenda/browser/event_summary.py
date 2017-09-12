@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
+from cpskin.core.utils import format_phone
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.app.event.browser.event_summary import EventSummaryView
@@ -24,6 +25,12 @@ class EventContactSummaryView(EventSummaryView):
             return None
         else:
             return self.context.contact.to_object
+
+    def get_phone_or_cellphone(self, contact):
+        phones = getattr(contact, 'phone', [])
+        if len(phones) == 0:
+            phones = getattr(contact, 'cell_phone', [])
+        return [format_phone(phone) for phone in phones]
 
     def get_location(self):
         if not getattr(self.context, 'location', None):
@@ -66,7 +73,9 @@ class EventContactSummaryView(EventSummaryView):
         fields = getFieldsInOrder(schema)
         taxonomies = []
         for name, field in fields:
-            if name.startswith('taxonomy_') and field:
+            # categories check is a hack for Namur, do not remove it.
+            if (name.startswith('taxonomy_') or 'categories' in name) \
+                    and field:
                 if getattr(field, 'value_type', None):
                     vocabulary_name = field.value_type.vocabularyName
                 else:
@@ -86,6 +95,29 @@ class EventContactSummaryView(EventSummaryView):
                 categories.sort()
                 tax = {}
                 tax['name'] = field.title
+                tax['id'] = name
                 tax['value'] = ', '.join(categories)
                 taxonomies.append(tax)
-        return taxonomies
+        return sort_taxonomies(taxonomies)
+
+
+def sort_taxonomies(taxonomies):
+    prefered_order = (
+        'categories',
+        'gratuite',
+        'publiccible',
+        'danslecadrede'
+    )
+    prefered_order_ids = []
+    indexes = [tax['id'] for tax in taxonomies]
+    for order in prefered_order:
+        for ind in indexes:
+            if order in ind:
+                prefered_order_ids.append(ind)
+    rest = list(set(indexes).difference(prefered_order_ids))
+    prefered_order_ids.extend(rest)
+    sorted_tax = []
+    for prefered_order_id in prefered_order_ids:
+        tax = [tax for tax in taxonomies if tax['id'] == prefered_order_id][0]
+        sorted_tax.append(tax)
+    return sorted_tax

@@ -104,7 +104,13 @@
           </li>
           <li tal:define="contact view/get_contact" tal:condition="contact">
             <strong i18n:translate="">Contact</strong>
-            <a target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title"/>
+            <a class="event_title" target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title"/>
+            <tal:loop tal:repeat="phone python:view.get_phone_or_cellphone(contact)">
+              <a class="event_tel" tal:condition="phone" href="" tal:attributes="href string:tel:${phone/raw}">
+                  <div tal:replace="phone/formated"></div>
+              </a>
+            </tal:loop>
+            <a class="event_website" target="_blank" tal:attributes="href contact/website" tal:content="contact/website" tal:condition="contact/website" />
           </li>
           <li tal:define="location view/get_location" tal:condition="location">
             <strong i18n:translate="">Location</strong>
@@ -121,10 +127,12 @@
           </li>
           <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
                          tal:condition='taxonomies'>
-            <li tal:repeat="taxonomy taxonomies">
+            <tal:loop tal:repeat="taxonomy taxonomies">
+            <li tal:attributes="class taxonomy/id">
               <strong tal:content='taxonomy/name'></strong>
               <span tal:content='taxonomy/value'></span>
             </li>
+            </tal:loop>
           </tal:condition>
         </tal:block>
 
@@ -165,10 +173,12 @@
             </tal:cond>
             <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
                            tal:condition='taxonomies'>
-              <li tal:repeat="taxonomy taxonomies">
+              <tal:loop tal:repeat="taxonomy taxonomies">
+              <li class="bsuttor" tal:attributes="class taxonomy/id">
                 <strong tal:content='taxonomy/name'></strong>
                 <span tal:content='taxonomy/value'></span>
               </li>
+              </tal:loop>
             </tal:condition>
           </tal:cond>
         </tal:block>

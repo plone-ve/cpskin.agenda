@@ -4,6 +4,9 @@ Changelog
 1.1.11 (unreleased)
 -------------------
 
+- Order taxonomy fields for event summary view.
+  [bsuttor]
+
 - Check if taxonomies are list or string.
   [bsuttor]
 

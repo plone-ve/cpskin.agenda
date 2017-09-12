@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
+from cpskin.agenda.browser.event_summary import sort_taxonomies
 from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -187,3 +188,58 @@ class TestViews(unittest.TestCase):
         event.taxonomy_test = set()
         taxonomies = view.get_taxonomies()
         self.assertEqual(len(taxonomies), 0)
+
+    def test_sort_of_taxonomies(self):
+        # applyProfile(self.portal, 'collective.taxonomy:default')
+        taxonomies = [
+            {'name': u'Soutenu par la Ville de Namur',
+             'value': u'Sports',
+             'id': 'taxonomy_soutenuparlavilledenamur_'},
+            {'name': u'Dans le cadre de',
+             'value': u'Challenge des joggings de la Ville de Namur',
+             'id': 'taxonomy_danslecadrede'},
+            {'name': u'Co\xfbt',
+             'value': 'Payant',
+             'id': 'taxonomy_gratuite'},
+            {'name': u'Public cible',
+             'value': u'Tout public',
+             'id': 'taxonomy_publiccible'},
+            {'id': 'categories_evenements',
+             'name': u'Cat\xe9gories \xe9v\xe9nements',
+             'value': u'Sport'},
+        ]
+        # self.assertEqual(len(taxonomies), 5)
+        # import ipdb; ipdb.set_trace()
+        sorted_tax = sort_taxonomies(taxonomies)
+        self.assertEqual(sorted_tax[0]['id'], 'categories_evenements')
+        self.assertEqual(sorted_tax[2]['id'], 'taxonomy_publiccible')
+        self.assertEqual(sorted_tax[4]['id'],
+                         'taxonomy_soutenuparlavilledenamur_')
+
+    def test_phone_or_cellphone(self):
+        add_behavior('Event', IRelatedContacts.__identifier__)
+        timezone = 'Europe/Brussels'
+        now = datetime.datetime.now()
+        self.event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='event')
+        self.event.timezone = timezone
+        eventbasic = IEventBasic(self.event)
+        eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
+        eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)
+        self.event.reindexObject()
+        view = getMultiAdapter(
+            (self.event, self.request), name='event_summary')
+        person, organization1, organization2 = add_test_contents(self.portal)
+        organization1.phone = ['081/586.100']
+        phone_or_cellphone = view.get_phone_or_cellphone(organization1)
+        self.assertEqual(phone_or_cellphone.get('formated'),
+                         '+32 (0) 81 58 61 00')
+        organization1.phone = []
+        phone_or_cellphone = view.get_phone_or_cellphone(organization1)
+        self.assertEqual(phone_or_cellphone.get('formated'), [])
+        organization1.cell_phone = ['081/586.101']
+        phone_or_cellphone = view.get_phone_or_cellphone(organization1)
+        self.assertEqual(phone_or_cellphone.get('formated'),
+                         '+32 (0) 81 58 61 01')
