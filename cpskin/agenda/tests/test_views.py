@@ -234,12 +234,12 @@ class TestViews(unittest.TestCase):
         person, organization1, organization2 = add_test_contents(self.portal)
         organization1.phone = ['081/586.100']
         phone_or_cellphone = view.get_phone_or_cellphone(organization1)
-        self.assertEqual(phone_or_cellphone.get('formated'),
+        self.assertEqual(phone_or_cellphone[0].get('formated'),
                          '+32 (0) 81 58 61 00')
         organization1.phone = []
         phone_or_cellphone = view.get_phone_or_cellphone(organization1)
-        self.assertEqual(phone_or_cellphone.get('formated'), [])
+        self.assertEqual(len(phone_or_cellphone), 0)
         organization1.cell_phone = ['081/586.101']
         phone_or_cellphone = view.get_phone_or_cellphone(organization1)
-        self.assertEqual(phone_or_cellphone.get('formated'),
+        self.assertEqual(phone_or_cellphone[0].get('formated'),
                          '+32 (0) 81 58 61 01')

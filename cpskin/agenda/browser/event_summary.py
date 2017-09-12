@@ -30,6 +30,8 @@ class EventContactSummaryView(EventSummaryView):
         phones = getattr(contact, 'phone', [])
         if len(phones) == 0:
             phones = getattr(contact, 'cell_phone', [])
+        if not phones:
+            return []
         return [format_phone(phone) for phone in phones]
 
     def get_location(self):
