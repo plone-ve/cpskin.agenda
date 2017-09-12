@@ -4,7 +4,11 @@ Changelog
 1.1.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set ical at the end of event summary view.
+  [bsuttor]
+
+- Use cpskin as i18n domain for event_summary.pt.
+  [bsuttor]
 
 
 1.1.11 (2017-09-12)
