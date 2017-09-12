@@ -89,7 +89,7 @@
             <strong i18n:translate="">Organizer</strong>
             <a target="_blank" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title"/>
           </li>
-          <li tal:define="contact view/get_contact" tal:condition="contact">
+          <li class="event_contacts" tal:define="contact view/get_contact" tal:condition="contact">
             <strong i18n:translate="">Contact</strong>
             <a class="event_title" target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title"/>
             <tal:loop tal:repeat="phone python:view.get_phone_or_cellphone(contact)">

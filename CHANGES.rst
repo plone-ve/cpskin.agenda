@@ -4,7 +4,8 @@ Changelog
 1.1.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add a class on li of contact in event_summary view.
+  [bsuttor]
 
 
 1.1.12 (2017-09-12)
