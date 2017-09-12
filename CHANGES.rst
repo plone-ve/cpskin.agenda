@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.11 (unreleased)
+1.1.11 (2017-09-12)
 -------------------
 
 - Order taxonomy fields for event summary view.
