@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.14 (unreleased)
+1.1.14 (2017-09-13)
 -------------------
 
 - Change order on event_summary view between organiser and contact.
