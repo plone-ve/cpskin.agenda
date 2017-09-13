@@ -4,7 +4,8 @@ Changelog
 1.1.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Change order on event_summary view between organiser and contact.
+  [bsuttor]
 
 
 1.1.13 (2017-09-12)
