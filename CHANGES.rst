@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.15 (unreleased)
+1.1.15 (2017-09-13)
 -------------------
 
 - Fix batched events on faceted-agenda-ungrouped-view-items view : #18695
