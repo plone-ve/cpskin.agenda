@@ -4,7 +4,8 @@ Changelog
 1.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix batched events on faceted-agenda-ungrouped-view-items view : #18695
+  [laulaz]
 
 
 1.1.14 (2017-09-13)
