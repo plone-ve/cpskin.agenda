@@ -28,6 +28,8 @@ class EventContactSummaryView(EventSummaryView):
 
     def get_phone_or_cellphone(self, contact):
         phones = getattr(contact, 'phone', [])
+        if not isinstance(phones, list):
+            phones = [phones]
         if len(phones) == 0:
             phones = getattr(contact, 'cell_phone', [])
         if not phones:

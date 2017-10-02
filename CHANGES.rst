@@ -4,7 +4,8 @@ Changelog
 1.1.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix summary view if a phone number is not yet a list.
+  [bsuttor]
 
 
 1.1.15 (2017-09-13)
