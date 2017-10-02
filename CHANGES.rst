@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.16 (unreleased)
+1.1.16 (2017-10-02)
 -------------------
 
 - Fix summary view if a phone number is not yet a list.
