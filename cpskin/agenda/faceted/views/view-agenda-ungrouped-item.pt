@@ -10,7 +10,8 @@
       url context/absolute_url|string:#;
       view_url python:(url and useView and url + '/view') or url;
       folderview context/@@folderview_view;
-      has_category python: folderview.see_categories(collection);"
+      has_category python: folderview.see_categories(collection);
+      show_day_and_month python: folderview.show_day_and_month(collection);"
      tal:attributes="href view_url;
                      title description">
 
@@ -33,6 +34,7 @@
     </div>
 
     <span class="documentByLine">
+      <tal:if tal:condition="show_day_and_month">
         <div class="day-month"
              tal:define="dates python: folderview.get_event_dates(context);
                          start dates/start;
@@ -42,6 +44,31 @@
           <div tal:content="end"
                tal:condition="end" />
         </div>
+      </tal:if>
+      <tal:else tal:condition="not: show_day_and_month">
+        <tal:one_day condition="python: folderview.is_one_day(context)">
+        <span i18n:translate="evenement_le">le</span>
+        <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=0, event=context)" />
+          <tal:withHours condition="python: folderview.is_with_hours(context)">
+            <tal:openEnd condition="python: folderview.is_open_end(context)">
+              <span i18n:translate="evenement_a_lheure">à</span>
+              <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=1, event=context)[11:]" />
+            </tal:openEnd>
+            <tal:fixedEnd condition="python: not folderview.is_open_end(context)">
+              <span i18n:translate="evenement_de">de</span>
+              <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=1, event=context)[11:]" />
+              <span i18n:translate="evenement_a">à</span>
+              <span tal:content="python: folderview.toLocalizedTime(context.end, long_format=1, event=context, startend='end')[11:]" />
+            </tal:fixedEnd>
+          </tal:withHours>
+        </tal:one_day>
+        <tal:more_days condition="python: not folderview.is_one_day(context)">
+          <span i18n:translate="evenement_du">du</span>
+          <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=0, event=context)" />
+          <span i18n:translate="evenement_au">au</span>
+          <span tal:content="python: folderview.toLocalizedTime(context.end, long_format=0, event=context, startend='end')" />
+        </tal:more_days>
+      </tal:else>
     </span>
 
   </a>
