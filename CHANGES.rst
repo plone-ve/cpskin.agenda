@@ -4,7 +4,8 @@ Changelog
 1.1.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Change events dates display to reflect index view
+  [laulaz]
 
 
 1.1.16 (2017-10-02)

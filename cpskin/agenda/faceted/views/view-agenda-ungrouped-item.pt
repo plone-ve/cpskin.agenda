@@ -25,28 +25,15 @@
 
     <span class="documentByLine"
           tal:define="folderview context/@@folderview_view">
-      <tal:one_day condition="python: folderview.is_one_day(context)">
-      <span i18n:translate="evenement_le">le</span>
-      <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=0, event=context)" />
-        <tal:withHours condition="python: folderview.is_with_hours(context)">
-          <tal:openEnd condition="python: folderview.is_open_end(context)">
-            <span i18n:translate="evenement_a_lheure">à</span>
-            <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=1, event=context)[11:]" />
-          </tal:openEnd>
-          <tal:fixedEnd condition="python: not folderview.is_open_end(context)">
-            <span i18n:translate="evenement_de">de</span>
-            <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=1, event=context)[11:]" />
-            <span i18n:translate="evenement_a">à</span>
-            <span tal:content="python: folderview.toLocalizedTime(context.end, long_format=1, event=context, startend='end')[11:]" />
-          </tal:fixedEnd>
-        </tal:withHours>
-      </tal:one_day>
-      <tal:more_days condition="python: not folderview.is_one_day(context)">
-        <span i18n:translate="evenement_du">du</span>
-        <span tal:content="python: folderview.toLocalizedTime(context.start, long_format=0, event=context)" />
-        <span i18n:translate="evenement_au">au</span>
-        <span tal:content="python: folderview.toLocalizedTime(context.end, long_format=0, event=context, startend='end')" />
-      </tal:more_days>
+        <div class="day-month"
+             tal:define="dates python: folderview.get_event_dates(context);
+                         start dates/start;
+                         end dates/end">
+          <div tal:content="start"
+               tal:condition="start" />
+          <div tal:content="end"
+               tal:condition="end" />
+        </div>
     </span>
 
   </a>
