@@ -127,6 +127,7 @@ class EventsView(BrowserView):
         request = self.request
         scale = getattr(context, 'collection_image_scale', 'thumb')
         request['scale'] = scale
+        request['collection'] = context
         render_view = u'faceted-agenda-view-item'
         if self.__name__ == 'faceted-events-preview-items':
             # This will be removed when aceted-agenda-view-items will totally

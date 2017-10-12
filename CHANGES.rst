@@ -4,6 +4,9 @@ Changelog
 1.1.17 (unreleased)
 -------------------
 
+- Add categories on agenda ungrouped view : #18471
+  [laulaz]
+
 - Change events dates display to reflect index view
   [laulaz]
 

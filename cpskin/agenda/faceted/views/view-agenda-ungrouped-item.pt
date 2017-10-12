@@ -2,12 +2,15 @@
   tal:define="portal_type context/portal_type;
               useViewTypes context/portal_properties/site_properties/typesUseViewActionInListings;
               useView python:portal_type in useViewTypes;
-              scale request/scale;">
+              scale request/scale;
+              collection nocall: request/collection;">
   <a tal:define="
       description context/Description|string:;
       title context/pretty_title_or_id|string:;
       url context/absolute_url|string:#;
-      view_url python:(url and useView and url + '/view') or url;"
+      view_url python:(url and useView and url + '/view') or url;
+      folderview context/@@folderview_view;
+      has_category python: folderview.see_categories(collection);"
      tal:attributes="href view_url;
                      title description">
 
@@ -17,14 +20,19 @@
          tal:attributes="style string:background-image: url(${scaled_image_url})">
     </div>
 
+    <tal:block tal:condition="has_category">
+    <tal:loop tal:define="categories python: folderview.get_categories(collection, context)" tal:condition="categories">
+            <div class="indexview-categories" tal:content="categories" />
+    </tal:loop>
+    </tal:block>
+
     <div class="pagecaption">
 
      <h3 tal:content="title"></h3>
 
     </div>
 
-    <span class="documentByLine"
-          tal:define="folderview context/@@folderview_view">
+    <span class="documentByLine">
         <div class="day-month"
              tal:define="dates python: folderview.get_event_dates(context);
                          start dates/start;
