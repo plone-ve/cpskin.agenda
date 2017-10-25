@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.17 (unreleased)
+1.1.17 (2017-10-25)
 -------------------
 
 - Add categories on agenda ungrouped view : #18471
