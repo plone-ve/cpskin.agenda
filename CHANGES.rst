@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.18 (unreleased)
+1.1.18 (2017-10-30)
 -------------------
 
 - Improve website from related contacts.
