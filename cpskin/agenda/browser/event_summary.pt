@@ -94,7 +94,8 @@
                   <div tal:replace="phone/formated"></div>
               </a>
             </tal:loop>
-            <a class="event_website" target="_blank" tal:attributes="href contact/website" tal:content="contact/website" tal:condition="contact/website" />
+            <a class="event_website" target="_blank" tal:replace="python:view.get_website(contact)"
+                tal:condition="python:view.get_website(contact)" />
           </li>
           <li tal:define="organizer view/get_organizer" tal:condition="organizer">
             <strong i18n:translate="">Organizer</strong>

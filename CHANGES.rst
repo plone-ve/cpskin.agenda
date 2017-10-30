@@ -4,7 +4,8 @@ Changelog
 1.1.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve website from related contacts.
+  [bsuttor]
 
 
 1.1.17 (2017-10-25)

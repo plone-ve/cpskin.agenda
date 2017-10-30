@@ -45,6 +45,24 @@ class EventContactSummaryView(EventSummaryView):
             else:
                 return self.context.location.to_object
 
+    def get_website(self, contact):
+        website = getattr(contact, 'website')
+        if not website:
+            return None
+        if website.startswith('http'):
+            url = website
+            website_name = website.replace('http://', '')
+        elif website.startswith('https'):
+            url = website
+            website_name = website.replace('https://', '')
+        else:
+            url = 'http://{0}'.format(website)
+            website_name = website
+        html = ''
+        html += '<a class="event_website" href="{0}" target="_blank">{1}</a>'.format(
+            url, website_name)
+        return html
+
     def get_partners(self):
         if not getattr(self.context, 'partners', None):
             return None

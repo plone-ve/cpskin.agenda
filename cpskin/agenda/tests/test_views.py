@@ -151,6 +151,38 @@ class TestViews(unittest.TestCase):
         self.event.location = rv
         self.assertIn('Location', view())
 
+    def test_related_contacts_behavior_view_for_contact(self):
+        add_behavior('Event', IRelatedContacts.__identifier__)
+        timezone = 'Europe/Brussels'
+        now = datetime.datetime.now()
+        self.event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='event')
+        self.event.timezone = timezone
+        eventbasic = IEventBasic(self.event)
+        eventbasic.start = datetime.datetime(now.year, now.month, now.day, 18)
+        eventbasic.end = datetime.datetime(now.year, now.month, now.day, 21)
+        self.event.reindexObject()
+        view = getMultiAdapter(
+            (self.event, self.request), name='event_summary')
+        person, organization1, organization2 = add_test_contents(self.portal)
+
+        # set related contact
+        intids = getUtility(IIntIds)
+        to_id = intids.getId(organization1)
+        rv = RelationValue(to_id)
+        self.event.contact = rv
+        self.assertEqual(
+            view.get_website(organization1),
+            None
+        )
+        organization1.website = 'www.foo.bar'
+        self.assertEqual(
+            view.get_website(organization1),
+            '<a class="event_website" href="http://www.foo.bar" target="_blank">www.foo.bar</a>'  # noqa
+        )
+
     def test_taxonmies_field_visible(self):
         applyProfile(self.portal, 'collective.taxonomy:default')
 
@@ -208,8 +240,6 @@ class TestViews(unittest.TestCase):
              'name': u'Cat\xe9gories \xe9v\xe9nements',
              'value': u'Sport'},
         ]
-        # self.assertEqual(len(taxonomies), 5)
-        # import ipdb; ipdb.set_trace()
         sorted_tax = sort_taxonomies(taxonomies)
         self.assertEqual(sorted_tax[0]['id'], 'categories_evenements')
         self.assertEqual(sorted_tax[2]['id'], 'taxonomy_publiccible')
