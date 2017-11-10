@@ -8,15 +8,14 @@ from z3c.relationfield.relation import RelationValue
 
 @indexer(IEvent)
 def zgeo_geometry_value(obj):
-    if isinstance(obj.contact, RelationValue):
-        if obj.contact.isBroken():
-            obj.contact = None
+    if isinstance(obj.location, RelationValue):
+        if obj.location.isBroken():
+            obj.location = None
             raise AttributeError
-        contact_obj = obj.contact.to_object
-        # import ipdb; ipdb.set_trace()
+        contact_obj = obj.location.to_object
         if IGeoreferenceable.providedBy(contact_obj):
-            old_geo = IGeoreferenced(obj)
-            old_geo.removeGeoInterface()
+            # old_geo = IGeoreferenced(obj)
+            # old_geo.removeGeoInterface()
             geo = IGeoreferenced(contact_obj)
             if geo.type and geo.coordinates:
                 return {

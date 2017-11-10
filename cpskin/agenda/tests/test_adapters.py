@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from collective.geo.behaviour.interfaces import ICoordinates
+# from collective.geo.geographer.interfaces import IGeoreferenceable
+from collective.geo.geographer.interfaces import IGeoreferenced
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
 # from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
-from collective.geo.behaviour.interfaces import ICoordinates
-# from collective.geo.geographer.interfaces import IGeoreferenceable
-from collective.geo.geographer.interfaces import IGeoreferenced
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
@@ -54,7 +54,7 @@ class TestAdapters(unittest.TestCase):
         intids = getUtility(IIntIds)
         to_id = intids.getId(organization)
         rv = RelationValue(to_id)
-        event.contact = rv
+        event.location = rv
         notify(ObjectModifiedEvent(event))
         event.reindexObject()
         # geo = IGeoreferenced(event)

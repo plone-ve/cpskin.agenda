@@ -2,13 +2,24 @@
 from collective.contact.widget.schema import ContactChoice
 from collective.contact.widget.schema import ContactList
 from collective.contact.widget.source import ContactSourceBinder
+from collective.geo.geographer.geo import GeoreferencingAnnotator
+from collective.geo.geographer.interfaces import IGeoreferenceable
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
+from persistent.dict import PersistentDict
+from plone.app.contenttypes.interfaces import IEvent
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from z3c.relationfield.relation import RelationValue
+from zope.annotation.interfaces import IAnnotations
+from zope.component import adapter
+from zope.interface import implementer
 from zope.interface import provider
+
+
+KEY = 'collective.geo.geographer.georeference'
 
 
 @provider(IFormFieldProvider)
@@ -52,6 +63,35 @@ class IRelatedContacts(model.Schema):
         ),
         required=False,
     )
+
+
+class LocationRelatedContactsGeoreferencingAnnotator(GeoreferencingAnnotator):
+
+    def __init__(self, context):
+        if isinstance(context.location, RelationValue):
+            contact_obj = context.location.to_object
+            context = contact_obj
+        self.context = context
+        annotations = IAnnotations(self.context)
+        self.geo = annotations.get(KEY, None)
+        if not self.geo:
+            annotations[KEY] = PersistentDict()
+            self.geo = annotations[KEY]
+            self.geo['type'] = None
+            self.geo['coordinates'] = None
+            self.geo['crs'] = None
+
+
+class ILocationRelatedContactsGeoreferenceable(IGeoreferenceable):
+    pass
+
+
+@implementer(IRelatedContacts)
+@adapter(IEvent)
+class RelatedContacts(object):
+
+    def __init__(self, context):
+        self.context = context
 
 
 def modified_event(obj, event):
