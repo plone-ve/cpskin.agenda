@@ -4,7 +4,8 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not use acquisition to get contact on event_view.
+  [bsuttor]
 
 
 1.2.0 (2017-11-22)

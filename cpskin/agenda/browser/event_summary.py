@@ -15,16 +15,18 @@ from zope.schema.interfaces import IVocabularyFactory
 class EventContactSummaryView(EventSummaryView):
 
     def get_organizer(self):
-        if not getattr(self.context, 'organizer', None):
+        organizer = getattr(self.context.aq_base, 'contact', None)
+        if not organizer:
             return None
         else:
-            return self.context.organizer.to_object
+            return organizer.to_object
 
     def get_contact(self):
-        if not getattr(self.context, 'contact', None):
+        contact = getattr(self.context.aq_base, 'contact', None)
+        if not contact:
             return None
         else:
-            return self.context.contact.to_object
+            return contact.to_object
 
     def get_phone_or_cellphone(self, contact):
         phones = getattr(contact, 'phone', [])
