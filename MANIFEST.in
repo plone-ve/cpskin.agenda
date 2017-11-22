@@ -5,6 +5,7 @@ exclude .travis.yml
 exclude bootstrap.py
 exclude Makefile
 exclude .coveragerc
+exclude .editorconfig
 graft cpskin 
 recursive-include docs LICENSE.*
 global-exclude *.pyc
