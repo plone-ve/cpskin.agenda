@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.1 (unreleased)
+1.2.1 (2017-11-22)
 ------------------
 
 - Do not use acquisition to get contact on event_view.
