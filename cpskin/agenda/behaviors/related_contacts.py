@@ -93,6 +93,38 @@ class RelatedContacts(object):
     def __init__(self, context):
         self.context = context
 
+    @property
+    def location(self):
+        return getattr(self.context, 'location', None)
+
+    @location.setter
+    def location(self, value):
+        self.context.location = value
+
+    @property
+    def organizer(self):
+        return getattr(self.context, 'organizer', None)
+
+    @organizer.setter
+    def organizer(self, value):
+        self.context.organizer = value
+
+    @property
+    def contact(self):
+        return getattr(self.context, 'contact', None)
+
+    @contact.setter
+    def contact(self, value):
+        self.context.contact = value
+
+    @property
+    def partners(self):
+        return getattr(self.context, 'partners', None)
+
+    @partners.setter
+    def partners(self, value):
+        self.context.partners = value
+
 
 def modified_event(obj, event):
     type_name = obj.id

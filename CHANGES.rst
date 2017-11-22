@@ -4,7 +4,8 @@ Changelog
 1.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add setter and getter in new factory behavior.
+  [bsuttor]
 
 
 1.2.1 (2017-11-22)
