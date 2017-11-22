@@ -15,7 +15,7 @@ from zope.schema.interfaces import IVocabularyFactory
 class EventContactSummaryView(EventSummaryView):
 
     def get_organizer(self):
-        organizer = getattr(self.context.aq_base, 'contact', None)
+        organizer = getattr(self.context.aq_base, 'organizer', None)
         if not organizer:
             return None
         else:
@@ -39,13 +39,14 @@ class EventContactSummaryView(EventSummaryView):
         return [format_phone(phone) for phone in phones]
 
     def get_location(self):
-        if not getattr(self.context, 'location', None):
+        location = getattr(self.context.aq_base, 'location', None)
+        if not location:
             return None
         else:
-            if isinstance(self.context.location, unicode):
+            if isinstance(location, unicode):
                 return get_location(self.context)
             else:
-                return self.context.location.to_object
+                return location.to_object
 
     def get_website(self, contact):
         website = getattr(contact, 'website')

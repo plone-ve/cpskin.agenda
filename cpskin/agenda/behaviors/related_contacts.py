@@ -68,7 +68,7 @@ class IRelatedContacts(model.Schema):
 class LocationRelatedContactsGeoreferencingAnnotator(GeoreferencingAnnotator):
 
     def __init__(self, context):
-        if isinstance(context.location, RelationValue):
+        if isinstance(context.get('location', None), RelationValue):
             contact_obj = context.location.to_object
             context = contact_obj
         self.context = context
