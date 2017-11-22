@@ -14,4 +14,9 @@
       name="event_dates"
       />
 
+    <adapter
+      factory=".adapter.zgeo_geometry_value"
+      name="zgeo_geometry"
+      />
+
 </configure>

@@ -7,6 +7,7 @@
   <include package="eea.facetednavigation" file="meta.zcml" />
   <include package="collective.contact.core" />
   <include package="collective.taxonomy" />
+  <include package="cpskin.core" />
 
   <include file="configure.zcml" />
 

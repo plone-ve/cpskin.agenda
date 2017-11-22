@@ -18,7 +18,15 @@
     title="Use related contacts fields for Event"
     description="Use location, organizer, contact and partners fields with a related field from collective.contact suite."
     provides=".related_contacts.IRelatedContacts"
+    factory=".related_contacts.RelatedContacts"
     for="plone.app.contenttypes.interfaces.IEvent"
+    marker=".related_contacts.ILocationRelatedContactsGeoreferenceable"
+    />
+
+  <adapter
+    factory=".related_contacts.LocationRelatedContactsGeoreferencingAnnotator"
+    provides="collective.geo.geographer.interfaces.IGeoreferenced"
+    for=".related_contacts.ILocationRelatedContactsGeoreferenceable"
     />
 
   <subscriber
@@ -26,4 +34,5 @@
          zope.lifecycleevent.interfaces.IObjectModifiedEvent"
     handler=".related_contacts.modified_event"
     />
+
 </configure>

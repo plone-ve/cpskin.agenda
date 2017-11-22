@@ -1,10 +1,12 @@
 Changelog
 =========
 
-1.1.19 (unreleased)
+1.2.0 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Related Contact location is now used to get coordinates from event with a location.
+zgeo_geometry_value is now in catalog with location related_contact value.
+  [bsuttor]
 
 
 1.1.18 (2017-10-30)

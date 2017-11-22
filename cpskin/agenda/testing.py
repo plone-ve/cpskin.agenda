@@ -35,7 +35,7 @@ class CPSkinAgendaPloneWithPackageLayer(PloneWithPackageLayer):
         api.content.create(
             type='Folder',
             id='folder',
-            title='folder',
+            title='Folder',
             container=portal)
 
 
