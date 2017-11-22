@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.2 (unreleased)
+1.2.2 (2017-11-22)
 ------------------
 
 - Add setter and getter in new factory behavior.
