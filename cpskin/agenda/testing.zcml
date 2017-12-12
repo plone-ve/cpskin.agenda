@@ -10,6 +10,7 @@
   <include package="collective.contact.core" />
   <include package="collective.taxonomy" />
   <include package="collective.atomrss" />
+  <includeOverrides file="overrides.zcml" />
 
   <genericsetup:registerProfile
       name="testing"
@@ -18,5 +19,4 @@
       description="Installs CPSkin agenda test profile"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
 </configure>
