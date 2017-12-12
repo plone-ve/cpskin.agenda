@@ -2,14 +2,14 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
+  <include file="configure.zcml" />
+
   <include package="plone.app.contenttypes" />
   <include package="plone.app.event" />
   <include package="eea.facetednavigation" file="meta.zcml" />
   <include package="collective.contact.core" />
   <include package="collective.taxonomy" />
-  <include package="cpskin.core" />
-
-  <include file="configure.zcml" />
+  <include package="collective.atomrss" />
 
   <genericsetup:registerProfile
       name="testing"

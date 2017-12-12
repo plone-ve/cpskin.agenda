@@ -15,8 +15,10 @@
       />
 
     <adapter
-      factory=".adapter.zgeo_geometry_value"
+      factory=".adapters.zgeo_geometry_value"
       name="zgeo_geometry"
       />
+
+    <includeOverrides file="overrides.zcml" />
 
 </configure>

@@ -4,7 +4,8 @@ Changelog
 1.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Override atomrss adapter to get related contact for event.
+  [bsuttor]
 
 
 1.2.2 (2017-11-22)

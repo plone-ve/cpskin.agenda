@@ -48,6 +48,7 @@ setup(name='cpskin.agenda',
           'cpskin.locales',
           'cpskin.core',
           'collective.taxonomy',
+          'collective.atomrss',
       ],
       extras_require={
           'test': [

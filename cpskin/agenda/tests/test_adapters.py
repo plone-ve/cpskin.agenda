@@ -68,3 +68,49 @@ class TestAdapters(unittest.TestCase):
         brain = api.content.find(UID=event.UID())[0]
         self.assertEqual(brain.zgeo_geometry['type'], 'Point')
         # check if event georeferenced is correct
+
+    def test_cpskin_event_feed_item(self):
+        folder = event = api.content.create(self.portal, 'Folder', 'myfolder')
+        add_behavior('Event', IRelatedContacts.__identifier__)
+        event = api.content.create(
+            container=folder,
+            type='Event',
+            id='myevent'
+        )
+        # add some contacts
+        applyProfile(self.portal, 'collective.contact.core:default')
+        add_behavior('organization', ICoordinates.__identifier__)
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+        organization = api.content.create(
+            container=directory, type='organization', id='organization')
+        organization.title = u'IMIO'
+        organization.street = u'Rue Léon Morel'
+        organization.number = u'1'
+        organization.zip_code = u'5032'
+        organization.city = u'Isnes'
+        organization.use_parent_address = False
+        # set related contact
+        intids = getUtility(IIntIds)
+        to_id = intids.getId(organization)
+        rv = RelationValue(to_id)
+        event.location = rv
+        notify(ObjectModifiedEvent(event))
+        event.reindexObject()
+        # set syndication
+        applyProfile(self.portal, 'collective.atomrss:default')
+        default_enabled_key = 'Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings.default_enabled'  # noqa
+        api.portal.set_registry_record(default_enabled_key, True)
+        request = folder.REQUEST
+        from zope.interface import alsoProvides
+        from collective.atomrss.interfaces import ICollectiveAtomrssLayer
+        alsoProvides(request, ICollectiveAtomrssLayer)
+        from zope.annotation.interfaces import IAnnotations
+        from Products.CMFPlone.browser.syndication.settings import FEED_SETTINGS_KEY
+        from persistent.dict import PersistentDict
+        _metadata = PersistentDict()
+        _metadata['render_body'] = True
+        annotations = IAnnotations(folder)
+        annotations[FEED_SETTINGS_KEY] = _metadata
+        view = api.content.get_view(name='atom.xml', context=folder, request=request)
+        self.assertTrue(u"IMIO<br />Rue L\xe9on Morel, 1<br />5032 Isnes" in view.index())
