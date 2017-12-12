@@ -1,18 +1,21 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-d
+from collective.atomrss.interfaces import ICollectiveAtomrssLayer
 from collective.geo.behaviour.interfaces import ICoordinates
-# from collective.geo.geographer.interfaces import IGeoreferenceable
 from collective.geo.geographer.interfaces import IGeoreferenced
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
-# from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.agenda.testing import CPSKIN_AGENDA_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
+from persistent.dict import PersistentDict
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from Products.CMFPlone.browser.syndication.settings import FEED_SETTINGS_KEY
 from z3c.relationfield.relation import RelationValue
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.event import notify
+from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 
@@ -102,15 +105,15 @@ class TestAdapters(unittest.TestCase):
         default_enabled_key = 'Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings.default_enabled'  # noqa
         api.portal.set_registry_record(default_enabled_key, True)
         request = folder.REQUEST
-        from zope.interface import alsoProvides
-        from collective.atomrss.interfaces import ICollectiveAtomrssLayer
+
         alsoProvides(request, ICollectiveAtomrssLayer)
-        from zope.annotation.interfaces import IAnnotations
-        from Products.CMFPlone.browser.syndication.settings import FEED_SETTINGS_KEY
-        from persistent.dict import PersistentDict
+
         _metadata = PersistentDict()
         _metadata['render_body'] = True
         annotations = IAnnotations(folder)
         annotations[FEED_SETTINGS_KEY] = _metadata
-        view = api.content.get_view(name='atom.xml', context=folder, request=request)
-        self.assertTrue(u"IMIO<br />Rue L\xe9on Morel, 1<br />5032 Isnes" in view.index())
+        view = api.content.get_view(
+            name='atom.xml',
+            context=folder,
+            request=request)
+        self.assertTrue(u'IMIO<br />Rue L\xe9on Morel, 1<br />5032 Isnes' in view.index())  # noqa

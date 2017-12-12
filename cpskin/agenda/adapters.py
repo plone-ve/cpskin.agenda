@@ -72,7 +72,7 @@ class CpskinEventFeedItem(EventFeedItem):
                         return ''
                     if not isinstance(phones, list):
                         phones = [phones]
-                    return ', '.join([format_phone(phone)['formated'] for phone in phones])
+                    return ', '.join([format_phone(phone)['formated'] for phone in phones])  # noqa
 
                 return getattr(obj, sub, '')
         else:

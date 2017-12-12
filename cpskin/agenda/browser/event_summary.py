@@ -62,7 +62,7 @@ class EventContactSummaryView(EventSummaryView):
             url = 'http://{0}'.format(website)
             website_name = website
         html = ''
-        html += '<a class="event_website" href="{0}" target="_blank">{1}</a>'.format(
+        html += '<a class="event_website" href="{0}" target="_blank">{1}</a>'.format(  # noqa
             url, website_name)
         return html
 
