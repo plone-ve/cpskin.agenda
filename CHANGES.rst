@@ -4,7 +4,8 @@ Changelog
 1.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Include overrides.zcml into cpskin.policy.
+  [bsuttor]
 
 
 1.2.3 (2017-12-12)

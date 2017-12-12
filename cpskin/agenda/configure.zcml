@@ -19,6 +19,7 @@
       name="zgeo_geometry"
       />
 
-    <includeOverrides file="overrides.zcml" />
+    <!-- Do not include override here, it's included in cpskin.policy to prenvent lot of zope.configuration.config.ConfigurationConflictError
+     <includeOverrides file="overrides.zcml" /> -->
 
 </configure>

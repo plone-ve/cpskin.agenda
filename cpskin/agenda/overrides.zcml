@@ -1,17 +1,17 @@
 <configure xmlns="http://namespaces.zope.org/zope" i18n_domain="cpskin">
 
-<include package="z3c.unconfigure" file="meta.zcml" />
-<include package="collective.atomrss" />
+  <include package="z3c.unconfigure" file="meta.zcml" />
+  <include package="collective.atomrss" />
+  <unconfigure>
+    <adapter factory="collective.atomrss.adapters.EventFeedItem"
+             for="plone.app.contenttypes.interfaces.IEvent
+                  Products.CMFPlone.interfaces.syndication.IFeed" />
+  </unconfigure>
 
-<unconfigure>
-  <adapter  factory="collective.atomrss.adapters.EventFeedItem" />
-</unconfigure>
+  <adapter
+      factory="cpskin.agenda.adapters.CpskinEventFeedItem"
+      for="plone.app.contenttypes.interfaces.IEvent
+           Products.CMFPlone.interfaces.syndication.IFeed"
+      provides="Products.CMFPlone.interfaces.syndication.IFeedItem" />
 
-  <configure package="collective.atomrss">
-    <adapter
-        factory="cpskin.agenda.adapters.CpskinEventFeedItem"
-        for="plone.app.contenttypes.interfaces.IEvent
-             Products.CMFPlone.interfaces.syndication.IFeed"
-        provides="Products.CMFPlone.interfaces.syndication.IFeedItem" />
-  </configure>
 </configure>
