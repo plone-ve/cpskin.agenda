@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.4 (unreleased)
+1.2.4 (2017-12-12)
 ------------------
 
 - Include overrides.zcml into cpskin.policy.
