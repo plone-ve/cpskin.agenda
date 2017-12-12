@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.3 (unreleased)
+1.2.3 (2017-12-12)
 ------------------
 
 - Override atomrss adapter to get related contact for event.
