@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.5 (unreleased)
+1.2.5 (2018-02-13)
 ------------------
 
 - Also catalog zgeo_geometry for event without IRelatedContacts behavior.
