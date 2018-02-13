@@ -21,15 +21,17 @@ def zgeo_geometry_value(obj):
             obj.location = None
             raise AttributeError
         contact_obj = obj.location.to_object
-        if IGeoreferenceable.providedBy(contact_obj):
-            # old_geo = IGeoreferenced(obj)
-            # old_geo.removeGeoInterface()
-            geo = IGeoreferenced(contact_obj)
-            if geo.type and geo.coordinates:
-                return {
-                    'type': geo.type,
-                    'coordinates': geo.coordinates
-                }
+    else:
+        contact_obj = obj
+    if IGeoreferenceable.providedBy(contact_obj):
+        # old_geo = IGeoreferenced(obj)
+        # old_geo.removeGeoInterface()
+        geo = IGeoreferenced(contact_obj)
+        if geo.type and geo.coordinates:
+            return {
+                'type': geo.type,
+                'coordinates': geo.coordinates
+            }
     # The catalog expects AttributeErrors when a value can't be found
     raise AttributeError
 

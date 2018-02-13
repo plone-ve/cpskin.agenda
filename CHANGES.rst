@@ -4,7 +4,8 @@ Changelog
 1.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Also catalog zgeo_geometry for event without IRelatedContacts behavior.
+  [bsuttor]
 
 
 1.2.4 (2017-12-12)
