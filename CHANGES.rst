@@ -4,6 +4,9 @@ Changelog
 1.2.6 (unreleased)
 ------------------
 
+- Format phone for event summary view without related contacts.
+  [bsuttor]
+
 - Add target="_blank" to event_url in summary view.
   [bsuttor]
 

@@ -148,10 +148,14 @@
             </tal:cond>
 
             <tal:cond condition="data/contact_phone">
+              <strong i18n:translate="contact_phone">Contact Phone</strong>
+              <li tal:repeat="phone python:view.get_phone_or_cellphone(contact)">
+                <div class="tel">
+                  <a class="event_tel" tal:condition="phone" href="" tal:attributes="href string:tel:${phone/raw}">
+                    <div tal:replace="phone/formated"></div>
+                  </a>
+                </div>
               <li>
-                <strong i18n:translate="contact_phone">Contact Phone</strong>
-                <div class="tel" tal:content="data/contact_phone">Contact Phone</div>
-              </li>
             </tal:cond>
 
             <tal:cond condition="data/attendees|nothing">
