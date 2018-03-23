@@ -28,6 +28,9 @@ class EventContactSummaryView(EventSummaryView):
         else:
             return contact.to_object
 
+    def get_formatted_phone(self, phone):
+        return format_phone(phone)
+
     def get_phone_or_cellphone(self, contact):
         phones = getattr(contact, 'phone', [])
         if not isinstance(phones, list):
