@@ -78,7 +78,7 @@
           <li class="event-url">
             <strong i18n:translate="event_url">Web</strong>
             <tal:span>
-              <a href="" tal:attributes="href data/event_url" i18n:translate="external_website">Visit external website</a>
+              <a href="" tal:attributes="href data/event_url" i18n:translate="external_website" target="_blank">Visit external website</a>
             </tal:span>
           </li>
         </tal:cond>

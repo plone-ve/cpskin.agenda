@@ -4,7 +4,8 @@ Changelog
 1.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add target="_blank" to event_url in summary view.
+  [bsuttor]
 
 
 1.2.5 (2018-02-13)
