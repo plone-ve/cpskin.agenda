@@ -4,6 +4,9 @@ Changelog
 1.2.6 (unreleased)
 ------------------
 
+- Fix sort order on ungrouped agenda view
+  [laulaz]
+
 - Format phone for event summary view without related contacts.
   [bsuttor]
 

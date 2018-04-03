@@ -93,7 +93,7 @@ class EventsView(BrowserView):
 
         if isinstance(results, Batch):  # Unbatch if needed
             results = results._sequence
-        sorted(
+        results = sorted(
             results,
             key=lambda brain: sort_ungrouped(brain, startDate, endDate)
         )
