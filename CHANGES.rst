@@ -4,6 +4,9 @@ Changelog
 1.2.6 (unreleased)
 ------------------
 
+- Show description on ungrouped agenda view if needed : #21067
+  [laulaz]
+
 - Fix sort order on ungrouped agenda view
   [laulaz]
 

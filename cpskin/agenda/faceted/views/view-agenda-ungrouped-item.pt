@@ -11,6 +11,7 @@
       view_url python:(url and useView and url + '/view') or url;
       folderview context/@@folderview_view;
       has_category python: folderview.see_categories(collection);
+      show_descriptions python: folderview.show_descriptions(collection);
       show_day_and_month python: folderview.show_day_and_month(collection);"
      tal:attributes="href view_url;
                      title description">
@@ -70,6 +71,10 @@
         </tal:more_days>
       </tal:else>
     </span>
+
+    <div class="description"
+         tal:condition="show_descriptions"
+         tal:content="context/Description" />
 
   </a>
 </div>
