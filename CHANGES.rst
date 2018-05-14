@@ -4,7 +4,8 @@ Changelog
 1.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not use acquisition to get contact into rss feed.
+  [bsuttor]
 
 
 1.2.6 (2018-05-14)

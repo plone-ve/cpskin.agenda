@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_base
 from collective.atomrss.adapters import EventFeedItem
 from collective.contact.core.browser.address import get_address
 from collective.documentgenerator.content.condition import ConfigurablePODTemplateCondition  # noqa
@@ -42,9 +43,9 @@ class CpskinEventFeedItem(EventFeedItem):
     def get_field(self, field_name):
         if field_name in ['contact_email', 'contact_name', 'contact_phone']:
             sub = field_name.replace('contact_', '')
-            field = getattr(self.context, 'contact', '')
+            field = getattr(aq_base(self.context), 'contact', '')
         else:
-            field = getattr(self.context, field_name, '')
+            field = getattr(aq_base(self.context), field_name, '')
         if not field:
             return ''
         if isinstance(field, RelationValue):
