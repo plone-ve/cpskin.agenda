@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.7 (unreleased)
+1.2.7 (2018-05-14)
 ------------------
 
 - Do not use acquisition to get contact into rss feed.
