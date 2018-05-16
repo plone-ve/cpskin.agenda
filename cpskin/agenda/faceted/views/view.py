@@ -19,11 +19,16 @@ def is_in_range(date, start, end):
 
 def sort_ungrouped(brain, searchedStartDate, searchedEndDate):
     """
-    We need to sort events by start date with this order :
-      1. one-day event
-      2. multi days events starting on the searched start date
+    We need to sort events with this order :
+      1. on start date : one-day event
+      2. on start date : multi days events starting on the searched start date
          (first end first)
-      3. other multi days events (first end first)
+      3. on searched start date : multi days events starting before and ending
+         after searched start date (first end first)
+      4. on end date : multi days events starting before and ending before
+         searched start date (first start first)
+      5. on start date : multi days events starting after and ending after
+         searched start date (first end first)
     """
     catalog = api.portal.get_tool('portal_catalog')
     rid = brain.getRID()
@@ -35,8 +40,12 @@ def sort_ungrouped(brain, searchedStartDate, searchedEndDate):
         return startDate, 0, 0
     elif startDate == searchedStartDate:
         return startDate, 1, (endDate - searchedStartDate).days
-    else:
-        return startDate, 2, (endDate - searchedStartDate).days
+    elif startDate < searchedStartDate < endDate:
+        return searchedStartDate, 2, (endDate - searchedStartDate).days
+    elif startDate < searchedStartDate:
+        return endDate, 3, (startDate - searchedStartDate).days
+    elif startDate > searchedStartDate:
+        return startDate, 4, (endDate - searchedStartDate).days
 
 
 def sort_and_group(context, brains, start, end):
