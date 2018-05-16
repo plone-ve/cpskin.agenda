@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.8 (unreleased)
+1.2.8 (2018-05-16)
 ------------------
 
 - Improve / fix agenda sort order
