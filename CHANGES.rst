@@ -4,7 +4,8 @@ Changelog
 1.2.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve / fix agenda sort order
+  [laulaz]
 
 
 1.2.7 (2018-05-14)

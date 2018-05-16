@@ -23,19 +23,20 @@ def sort_ungrouped(brain, searchedStartDate, searchedEndDate):
       1. one-day event
       2. multi days events starting on the searched start date
          (first end first)
-      3. multi days events starting before the searched start date
-         (first end first)
+      3. other multi days events (first end first)
     """
     catalog = api.portal.get_tool('portal_catalog')
     rid = brain.getRID()
     idx = catalog.getIndexDataForRID(rid)
     allDates = sorted(idx['event_dates'])
+    startDate = allDates[0]
+    endDate = allDates[-1]
     if len(allDates) == 1:
-        return allDates[0], 0, 0
-    elif allDates[0] == searchedStartDate:
-        return searchedStartDate, 1, 0
+        return startDate, 0, 0
+    elif startDate == searchedStartDate:
+        return startDate, 1, (endDate - searchedStartDate).days
     else:
-        return searchedStartDate, 1, (allDates[-1] - searchedStartDate).days
+        return startDate, 2, (endDate - searchedStartDate).days
 
 
 def sort_and_group(context, brains, start, end):
