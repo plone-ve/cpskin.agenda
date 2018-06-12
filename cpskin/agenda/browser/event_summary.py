@@ -144,10 +144,12 @@ class EventContactSummaryView(EventSummaryView):
         occurrences = []
         adapter = IRecurrenceSupport(self.event_context, None)
         if adapter:
-            for cnt, occ in enumerate(adapter.occurrences()):
-                if cnt == self.max_occurrences:
+            cnt_future_occ = 0
+            for occ in adapter.occurrences():
+                if cnt_future_occ == self.max_occurrences:
                     break
                 if occ.end >= datetime.utcnow().replace(tzinfo=pytz.utc):
+                    cnt_future_occ += 1
                     occurrences.append(occ)
         return occurrences
 

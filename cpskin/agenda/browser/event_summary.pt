@@ -63,8 +63,8 @@
                 </tal:def>
               </span>
               <span tal:condition="view/num_more_occurrences">
-                <a tal:attributes="href string:${view/event_context/absolute_url}/@@event_listing" tal:content="view/more_occurrences_text">
-                  There are 12 more occurrences.
+                <a i18n:translate="" tal:attributes="href string:${view/event_context/absolute_url}/@@event_listing">
+                  All dates
                 </a>
               </span>
             </li>
@@ -155,7 +155,7 @@
                 </a>
               </li>
             </tal:cond>
-            
+
             <tal:cond condition="data/attendees|nothing">
               <li>
                 <strong i18n:translate="contact_attendees">Attendees</strong>
