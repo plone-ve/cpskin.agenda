@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
+import pytz
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
-from cpskin.core.utils import format_phone
 from cpskin.locales import CPSkinMessageFactory as _
+
+from cpskin.core.utils import format_phone
 from plone import api
 from plone.app.event.browser.event_summary import EventSummaryView
 from plone.app.event.browser.event_view import get_location
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.event.interfaces import IRecurrenceSupport
 from zope.component import getUtility
 from zope.component import queryUtility
 from zope.schema import getFieldsInOrder
@@ -103,7 +108,7 @@ class EventContactSummaryView(EventSummaryView):
         for name, field in fields:
             # categories check is a hack for Namur, do not remove it.
             if (name.startswith('taxonomy_') or 'categories' in name) \
-                    and field:
+                and field:
                 if getattr(field, 'value_type', None):
                     vocabulary_name = field.value_type.vocabularyName
                 else:
@@ -127,6 +132,24 @@ class EventContactSummaryView(EventSummaryView):
                 tax['value'] = ', '.join(categories)
                 taxonomies.append(tax)
         return sort_taxonomies(taxonomies)
+
+    @property
+    def next_occurrences(self):
+        """Returns occurrences for this context, except the start
+        occurrence, limited to self.max_occurrence occurrences.
+
+        :returns: List with next occurrences.
+        :rtype: list
+        """
+        occurrences = []
+        adapter = IRecurrenceSupport(self.event_context, None)
+        if adapter:
+            for cnt, occ in enumerate(adapter.occurrences()):
+                if cnt == self.max_occurrences:
+                    break
+                if occ.end >= datetime.utcnow().replace(tzinfo=pytz.utc):
+                    occurrences.append(occ)
+        return occurrences
 
 
 def sort_taxonomies(taxonomies):
