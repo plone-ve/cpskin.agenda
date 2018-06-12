@@ -4,7 +4,8 @@ Changelog
 1.2.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve agenda to show only date in the future
+  [oxydedefer]
 
 
 1.2.8 (2018-05-16)
