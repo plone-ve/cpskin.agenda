@@ -49,6 +49,7 @@ setup(name='cpskin.agenda',
           'cpskin.core',
           'collective.taxonomy',
           'collective.atomrss',
+          'plone.restapi',
       ],
       extras_require={
           'test': [
