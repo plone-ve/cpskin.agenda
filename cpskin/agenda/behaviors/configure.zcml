@@ -29,6 +29,10 @@
     for=".related_contacts.ILocationRelatedContactsGeoreferenceable"
     />
 
+  <adapter factory=".related_contacts.ContactFieldSerializer" />
+  <adapter factory=".related_contacts.SerializeOccurenceToJson" />
+  <adapter factory=".related_contacts.SerializeEventCollectionToJson" />
+
   <subscriber
     for="plone.dexterity.interfaces.IDexterityFTI
          zope.lifecycleevent.interfaces.IObjectModifiedEvent"

@@ -4,6 +4,9 @@ Changelog
 1.2.9 (unreleased)
 ------------------
 
+- Add restapi serializer for occurence.
+  [bsuttor]
+
 - Improve agenda to show only date in the future
   [oxydedefer]
 

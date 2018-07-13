@@ -1,21 +1,35 @@
 # -*- coding: utf-8 -*-
+from collective.contact.core.browser.address import get_address
+from collective.contact.widget.interfaces import IContactChoice
 from collective.contact.widget.schema import ContactChoice
 from collective.contact.widget.schema import ContactList
 from collective.contact.widget.source import ContactSourceBinder
 from collective.geo.geographer.geo import GeoreferencingAnnotator
 from collective.geo.geographer.interfaces import IGeoreferenceable
+from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
 from persistent.dict import PersistentDict
+from plone.app.contenttypes.interfaces import ICollection
 from plone.app.contenttypes.interfaces import IEvent
+from plone.app.event.base import expand_events
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.event.interfaces import IOccurrence
+from plone.restapi.interfaces import ISerializeToJson
+from plone.restapi.serializer.collection import SerializeCollectionToJson
+from plone.restapi.serializer.converters import json_compatible
+from plone.restapi.serializer.dxcontent import SerializeToJson
+from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from plone.supermodel import model
 from z3c.relationfield.relation import RelationValue
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.interface import implementer
+from zope.interface import Interface
 from zope.interface import provider
 
 
@@ -140,3 +154,58 @@ def modified_event(obj, event):
         else:
             for pae_behavior in pae_behaviors:
                 add_behavior(type_name, pae_behavior)
+
+
+@adapter(IContactChoice, IDexterityContent, Interface)
+class ContactFieldSerializer(DefaultFieldSerializer):
+    def __call__(self):
+        value = self.get_value()
+        if getattr(value, 'to_object', False):
+            obj = value.to_object
+            result = {
+                'title': obj.title,
+                'path': '/'.join(obj.getPhysicalPath()),
+                'phone': obj.phone,
+                'cell_phone': obj.cell_phone,
+            }
+            result.update(get_address(obj))
+            return json_compatible(result)
+        return json_compatible(value, self.context)
+
+
+@implementer(ISerializeToJson)
+@adapter(IOccurrence, ICPSkinAgendaLayer)
+class SerializeOccurenceToJson(SerializeToJson):
+    def __call__(self):
+        obj = self.context
+        parent = obj.aq_parent
+        summary = getMultiAdapter((parent, self.request), ISerializeToJson)()
+        summary['@type'] = obj.portal_type
+        summary['@id'] = obj.absolute_url(),
+        summary['start'] = obj.start
+        summary['end'] = obj.end
+        summary['recurrence'] = ''
+        return json_compatible(summary)
+
+
+@implementer(ISerializeToJson)
+@adapter(ICollection, ICPSkinAgendaLayer)
+class SerializeEventCollectionToJson(SerializeCollectionToJson):
+
+    def __call__(self, version=None, include_items=True):
+        if 'allevents' in self.request.form.keys():
+            results = super(SerializeCollectionToJson, self).__call__(
+                version=version,
+            )
+            events = expand_events(
+                self.context.results(batch=False),
+                2
+            )
+            results['items'] = [
+                getMultiAdapter((brain, self.request), ISerializeToJson)()
+                for brain in events
+            ]
+            results['items_total'] = len(events)
+            return results
+        else:
+            return super(SerializeEventCollectionToJson, self).__call__( version, include_items )
