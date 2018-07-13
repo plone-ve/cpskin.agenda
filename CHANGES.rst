@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.9 (unreleased)
+1.2.9 (2018-07-13)
 ------------------
 
 - Add restapi serializer for occurence.
