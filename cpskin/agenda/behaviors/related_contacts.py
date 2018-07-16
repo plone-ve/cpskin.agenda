@@ -6,9 +6,11 @@ from collective.contact.widget.schema import ContactList
 from collective.contact.widget.source import ContactSourceBinder
 from collective.geo.geographer.geo import GeoreferencingAnnotator
 from collective.geo.geographer.interfaces import IGeoreferenceable
+from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.agenda.interfaces import ICPSkinAgendaLayer
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
+from cpskin.core.utils import safe_utf8
 from cpskin.locales import CPSkinMessageFactory as _
 from persistent.dict import PersistentDict
 from plone.app.contenttypes.interfaces import ICollection
@@ -18,6 +20,7 @@ from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.event.interfaces import IOccurrence
+from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.serializer.collection import SerializeCollectionToJson
 from plone.restapi.serializer.converters import json_compatible
@@ -28,9 +31,11 @@ from z3c.relationfield.relation import RelationValue
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
+from zope.component import getSiteManager
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import provider
+from zope.schema.interfaces import IField
 
 
 KEY = 'collective.geo.geographer.georeference'
@@ -201,6 +206,14 @@ class SerializeEventCollectionToJson(SerializeCollectionToJson):
                 self.context.results(batch=False),
                 2
             )
+            # items = []
+            # i = 0
+            # for brain in events:
+            #     items.append(getMultiAdapter((brain, self.request),
+            #          ISerializeToJson)())
+            #     i += 1
+            #     print '{0} / {1}'.format(str(i), len(events))
+            # results['items'] = items
             results['items'] = [
                 getMultiAdapter((brain, self.request), ISerializeToJson)()
                 for brain in events
@@ -208,4 +221,52 @@ class SerializeEventCollectionToJson(SerializeCollectionToJson):
             results['items_total'] = len(events)
             return results
         else:
-            return super(SerializeEventCollectionToJson, self).__call__( version, include_items )
+            return super(SerializeEventCollectionToJson, self).__call__(
+                version, include_items)
+
+
+@adapter(IField, IDexterityContent, ICPSkinAgendaLayer)
+@implementer(IFieldSerializer)
+class TaxonomyFieldSerializer(object):
+
+    def __init__(self, field, context, request):
+        self.context = context
+        self.request = request
+        self.field = field
+
+    def __call__(self):
+        field_name = self.field.__name__
+        if (field_name == 'categories_evenements' or
+           field_name.startswith('taxonomy_')) and \
+           field_name != 'taxonomy_category':
+            lang = self.context.language
+            taxonomy_ids = self.get_value()
+            if not taxonomy_ids:
+                return []
+            if isinstance(taxonomy_ids, basestring):
+                taxonomy_ids = [taxonomy_ids]
+            domain = 'collective.taxonomy.{0}'.format(
+                field_name.replace('taxonomy_', '').replace('_', ''))
+            sm = getSiteManager()
+            utility = sm.queryUtility(ITaxonomy, name=domain)
+            taxonomy_list = [taxonomy_id for taxonomy_id in taxonomy_ids]
+            text = []
+            if len(taxonomy_list) > 0:
+                for taxonomy_id in taxonomy_list:
+                    text.append(
+                        safe_utf8(
+                            utility.translate(
+                                taxonomy_id,
+                                context=self.context,
+                                target_language=lang
+                            )
+                        )
+                    )
+                return json_compatible(text)
+        else:
+            return json_compatible(self.get_value())
+
+    def get_value(self, default=None):
+        return getattr(self.field.interface(self.context),
+                       self.field.__name__,
+                       default)

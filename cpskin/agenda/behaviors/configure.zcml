@@ -32,6 +32,7 @@
   <adapter factory=".related_contacts.ContactFieldSerializer" />
   <adapter factory=".related_contacts.SerializeOccurenceToJson" />
   <adapter factory=".related_contacts.SerializeEventCollectionToJson" />
+  <adapter factory=".related_contacts.TaxonomyFieldSerializer" />
 
   <subscriber
     for="plone.dexterity.interfaces.IDexterityFTI
