@@ -4,7 +4,8 @@ Changelog
 1.2.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add Taxonomy field serializer.
+  [bsuttor]
 
 
 1.2.9 (2018-07-13)
