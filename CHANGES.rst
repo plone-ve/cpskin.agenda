@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.11 (unreleased)
+1.2.11 (2018-09-03)
 -------------------
 
 - Fix hard code type.
