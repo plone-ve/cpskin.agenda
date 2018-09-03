@@ -4,7 +4,8 @@ Changelog
 1.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix hard code type.
+  [seb]
 
 
 1.2.10 (2018-07-16)

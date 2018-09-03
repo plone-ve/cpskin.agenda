@@ -101,7 +101,7 @@ class EventContactSummaryView(EventSummaryView):
 
     def get_taxonomies(self):
         """Return all field added by taxonomies"""
-        portal_type = 'Event'
+        portal_type = self.context.portal_type
         schema = getUtility(IDexterityFTI, name=portal_type).lookupSchema()
         fields = getFieldsInOrder(schema)
         taxonomies = []
