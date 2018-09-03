@@ -10,7 +10,7 @@ Changelog
 1.2.11 (2018-09-03)
 -------------------
 
-- Fix hard code type.
+- Fix hard code type (#22092).
   [seb]
 
 
