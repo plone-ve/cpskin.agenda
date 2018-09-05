@@ -125,6 +125,23 @@
           </tal:condition>
         </tal:block>
 
+        <li tal:define="booking_price context/booking_price" tal:condition="context/booking_price">
+          <strong i18n:translate="">Tariff</strong>
+          <div tal:replace="booking_price"></div>
+        </li>
+
+        <li tal:define="booking_enable context/booking_enable" tal:condition="context/booking_enable">
+          <strong i18n:translate="">Booking</strong>
+          <div tal:replace="booking_enable"></div>
+        </li>
+
+        <li tal:define="booking_url context/booking_url" tal:condition="context/booking_url">
+          <strong i18n:translate="">Ticketing</strong>
+          <a target="_blank" tal:attributes="href booking_url" tal:content="booking_url"/>
+        </li>
+
+
+        <h1 tal:content="context/booking_price"> </h1>
         <tal:block tal:condition="not: view/enabled">
 
           <tal:cond condition="python:'contact' not in excludes">
