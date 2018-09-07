@@ -130,13 +130,13 @@
           <div tal:replace="view/get_booking_type" />
         </li>
 
-        <li tal:define="booking_price context/booking_price"
+        <li tal:define="booking_price context/booking_price | nothing"
             tal:condition="booking_price">
           <strong i18n:translate="">Price</strong>
           <div tal:replace="booking_price" />
         </li>
 
-        <li tal:define="booking_url context/booking_url"
+        <li tal:define="booking_url context/booking_url | nothing"
             tal:condition="booking_url">
           <strong i18n:translate="">Ticketing</strong>
           <a target="_blank" tal:attributes="href booking_url" tal:content="booking_url" />
