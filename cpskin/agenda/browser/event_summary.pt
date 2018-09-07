@@ -125,21 +125,22 @@
           </tal:condition>
         </tal:block>
 
-        <li tal:define="booking_price context/booking_price" tal:condition="context/booking_price">
-          <strong i18n:translate="">Tariff</strong>
-          <div tal:replace="booking_price"></div>
+        <li tal:condition="view/has_booking">
+          <strong i18n:translate="">Booking type</strong>
+          <div tal:replace="view/get_booking_type" />
         </li>
 
-        <li tal:define="booking_enable context/booking_enable" tal:condition="context/booking_enable">
-          <strong i18n:translate="">Booking</strong>
-          <div  i18n:translate="">Yes</div>
+        <li tal:define="booking_price context/booking_price"
+            tal:condition="booking_price">
+          <strong i18n:translate="">Price</strong>
+          <div tal:replace="booking_price" />
         </li>
 
-        <li tal:define="booking_url context/booking_url" tal:condition="context/booking_url">
+        <li tal:define="booking_url context/booking_url"
+            tal:condition="booking_url">
           <strong i18n:translate="">Ticketing</strong>
-          <a target="_blank" tal:attributes="href booking_url" tal:content="booking_url"/>
+          <a target="_blank" tal:attributes="href booking_url" tal:content="booking_url" />
         </li>
-
 
         <tal:block tal:condition="not: view/enabled">
 

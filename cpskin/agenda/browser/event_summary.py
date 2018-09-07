@@ -19,6 +19,20 @@ from zope.schema.interfaces import IVocabularyFactory
 
 class EventContactSummaryView(EventSummaryView):
 
+    def has_booking(self):
+        booking_type = getattr(self.context, 'booking_type', None)
+        if booking_type is None:
+            return False
+        return (booking_type != 'no_booking')
+
+    def get_booking_type(self):
+        booking_type = getattr(self.context, 'booking_type')
+        vocab = getUtility(
+            IVocabularyFactory,
+            name='cpskin.core.vocabularies.booking_types',
+        )(self.context)
+        return vocab.getTerm(booking_type).title
+
     def get_organizer(self):
         organizer = getattr(self.context.aq_base, 'organizer', None)
         if not organizer:

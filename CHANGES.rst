@@ -4,7 +4,8 @@ Changelog
 1.2.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Display booking fields in event summary : #20989
+  [laulaz]
 
 
 1.2.11 (2018-09-03)
