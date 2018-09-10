@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.12 (unreleased)
+1.2.12 (2018-09-10)
 -------------------
 
 - Display booking fields in event summary : #20989
