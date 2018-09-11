@@ -5,12 +5,14 @@ import pytz
 from cpskin.agenda.behaviors.related_contacts import IRelatedContacts
 from cpskin.locales import CPSkinMessageFactory as _
 
+from Products.CMFCore.utils import getToolByName
 from cpskin.core.utils import format_phone
 from plone import api
 from plone.app.event.browser.event_summary import EventSummaryView
 from plone.app.event.browser.event_view import get_location
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.event.interfaces import IRecurrenceSupport
+from plone.uuid.interfaces import IUUID
 from zope.component import getUtility
 from zope.component import queryUtility
 from zope.schema import getFieldsInOrder
@@ -166,6 +168,23 @@ class EventContactSummaryView(EventSummaryView):
                     cnt_future_occ += 1
                     occurrences.append(occ)
         return occurrences
+
+    @property
+    def num_total_occurrences(self):
+        """Return the number of occurrences"""
+        uid = IUUID(self.event_context, None)
+        if not uid:
+            # Might be an occurrence
+            return 0
+        catalog = getToolByName(self.event_context, 'portal_catalog')
+        brains = catalog(UID=uid)
+        if len(brains) == 0:
+            # Should not happen, but happened for me.
+            return 0
+        brain = brains[0]  # assuming, that current context is in the catalog
+        idx = catalog.getIndexDataForRID(brain.getRID())
+
+        return len(idx['start'])
 
 
 def sort_taxonomies(taxonomies):

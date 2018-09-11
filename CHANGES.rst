@@ -4,7 +4,8 @@ Changelog
 1.2.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Hide past occurrences in events : #21524
+  [daggelpop]
 
 
 1.2.12 (2018-09-10)

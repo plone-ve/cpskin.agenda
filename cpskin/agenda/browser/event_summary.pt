@@ -30,8 +30,10 @@
         </tal:cond>
 
         <li class="event-date-dates">
-          <ul>
-        <tal:cond condition="python:'date' not in excludes">
+          <ul tal:define="next_occs view/next_occurrences;
+                    all_occs view/num_total_occurrences;
+                    has_multiple_occs python:len(next_occs) > 1 or all_occs > 1">
+        <tal:cond condition="python:'date' not in excludes and not has_multiple_occs">
               <li class="event-date">
             <strong i18n:translate="event_when">When</strong>
             <span tal:define="start_tzname data/timezone;
@@ -46,14 +48,12 @@
           </li>
         </tal:cond>
 
-        <tal:condi condition="python:'occurrences' not in excludes">
-          <tal:block define="next_occs view/next_occurrences;
-                      all_occs view/num_more_occurrences" condition="python:len(next_occs) > 1 or all_occs > 1">
+        <tal:condi condition="python:'occurrences' not in excludes and has_multiple_occs">
             <li class="event-dates">
-              <strong i18n:translate="">
-                All dates
-              </strong>
-              <span tal:repeat="occ next_occs">
+              <strong i18n:translate="event_when">When</strong>
+              <span
+                 tal:repeat="occ next_occs"
+                 tal:condition="next_occs">
                 <tal:def define="this_is_occ python: occ.absolute_url() == context.absolute_url()">
                   <a tal:attributes="href occ/absolute_url" tal:omit-tag="this_is_occ">
                     <strong tal:omit-tag="not: this_is_occ">
@@ -62,13 +62,18 @@
                   </a>
                 </tal:def>
               </span>
-              <span tal:condition="view/num_more_occurrences">
+              <span
+                 class="closed-event"
+                 i18n:translate="event_is_over"
+                 tal:condition="not: next_occs">
+                This event is over.
+              </span>
+              <span>
                 <a i18n:translate="" tal:attributes="href string:${view/event_context/absolute_url}/@@event_listing">
                   All dates
                 </a>
               </span>
             </li>
-          </tal:block>
         </tal:condi>
       </ul>
     </li>
