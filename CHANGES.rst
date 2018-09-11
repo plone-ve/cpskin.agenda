@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.13 (unreleased)
+1.2.13 (2018-09-11)
 -------------------
 
 - Hide past occurrences in events : #21524
