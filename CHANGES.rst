@@ -4,7 +4,8 @@ Changelog
 1.2.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Limit categories to first element on agenda view : WEB-2866
+  [laulaz]
 
 
 1.2.13 (2018-09-11)

@@ -23,7 +23,7 @@
     </div>
 
     <tal:block tal:condition="has_category">
-    <tal:loop tal:define="categories python: folderview.get_categories(collection, context)" tal:condition="categories">
+    <tal:loop tal:define="categories python: folderview.get_categories(collection, context, limit=1)" tal:condition="categories">
             <div class="indexview-categories" tal:content="categories" />
     </tal:loop>
     </tal:block>
