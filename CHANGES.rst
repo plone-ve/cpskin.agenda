@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.14 (unreleased)
+1.2.14 (2019-02-25)
 -------------------
 
 - Fix weird bug with some events.
