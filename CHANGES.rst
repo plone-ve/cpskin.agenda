@@ -4,6 +4,9 @@ Changelog
 1.2.14 (unreleased)
 -------------------
 
+- Fix weird bug with some events.
+  [bsuttor]
+
 - Limit categories to first element on agenda view : WEB-2866
   [laulaz]
 
