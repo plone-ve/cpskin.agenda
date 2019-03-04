@@ -91,18 +91,11 @@ class LocationRelatedContactsGeoreferencingAnnotator(GeoreferencingAnnotator):
             contact_obj = context.location.to_object
             context = contact_obj
         self.context = context
-        # import ipdb; ipdb.set_trace()
-        if context:
-            annotations = IAnnotations(self.context)
-            self.geo = annotations.get(KEY, None)
-            if not self.geo:
-                annotations[KEY] = PersistentDict()
-                self.geo = annotations[KEY]
-                self.geo['type'] = None
-                self.geo['coordinates'] = None
-                self.geo['crs'] = None
-        else:
-            self.geo = PersistentDict()
+        annotations = IAnnotations(self.context)
+        self.geo = annotations.get(KEY, None)
+        if not self.geo:
+            annotations[KEY] = PersistentDict()
+            self.geo = annotations[KEY]
             self.geo['type'] = None
             self.geo['coordinates'] = None
             self.geo['crs'] = None
