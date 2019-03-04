@@ -4,7 +4,8 @@ Changelog
 1.2.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Revert commit 17a07b3cb5ab6178ed336ae23de1cc6dddf74c0f
+  [bsuttor]
 
 
 1.2.14 (2019-02-25)
