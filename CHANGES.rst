@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.15 (unreleased)
+1.2.15 (2019-03-04)
 -------------------
 
 - Revert commit 17a07b3cb5ab6178ed336ae23de1cc6dddf74c0f
