@@ -3,11 +3,25 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
+  <browser:resourceDirectory
+    name="cpskin.agenda.resources"
+    directory="resources"
+    />
+
  <browser:page
     for="plone.event.interfaces.IEvent"
     name="event_summary"
     class=".event_summary.EventContactSummaryView"
     template="event_summary.pt"
+    permission="zope2.View"
+    layer="..interfaces.ICPSkinAgendaLayer"
+    />
+
+ <browser:page
+    for="plone.event.interfaces.IEvent"
+    name="event_booking"
+    class=".event_booking.EventBooking"
+    template="event_booking.pt"
     permission="zope2.View"
     layer="..interfaces.ICPSkinAgendaLayer"
     />
