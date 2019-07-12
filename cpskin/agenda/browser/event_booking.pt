@@ -110,7 +110,6 @@
           </a>
         </tal:condi>
       </div>
-      
 
       <tal:location tal:define="location view/get_location" tal:condition="location">
         <a target="_blank" class="location" tal:attributes="href location/absolute_url" tal:content="location/Title"/>
