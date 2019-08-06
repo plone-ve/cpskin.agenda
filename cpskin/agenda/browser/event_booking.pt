@@ -23,7 +23,7 @@
           </metal:text>
 
 
-      <img tal:attributes="src string:${data/url}/@@images/image/banner-event">
+      <img class="event_booking_img" tal:attributes="src string:${data/url}/@@images/image">
       <!-- Taxonomy -->
       <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
                     tal:condition='taxonomies'>
@@ -112,7 +112,7 @@
       </div>
 
       <tal:location tal:define="location view/get_location" tal:condition="location">
-        <a target="_blank" class="location" tal:attributes="href location/absolute_url" tal:content="location/Title"/>
+        <span class="location" tal:content="location"/>
       </tal:location>
 
       <div class="text" tal:condition="data/text" tal:content="structure data/text"></div>
