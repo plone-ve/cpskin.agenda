@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.16 (unreleased)
+1.2.16 (2019-08-22)
 -------------------
 
 - Add div to load social media in new event_booking view
