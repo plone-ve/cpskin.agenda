@@ -4,6 +4,7 @@
     <include package="cpskin.core" />
 
     <include file="profiles.zcml" />
+    <include file="meta.zcml" />
 
     <include package=".behaviors" />
     <include package=".browser" />

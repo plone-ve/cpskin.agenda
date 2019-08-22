@@ -1,0 +1,23 @@
+#details-block.desactive {
+    height: 0px;
+    overflow: hidden;
+}
+#details-block.active {
+    height: auto;
+}
+.date {
+    border: 0px solid #ccc;
+    font-size: inherit;
+    padding: 0;
+    text-align: left;
+    width: auto;
+    box-shadow: 0 0 0px #eee inset;
+}
+.portaltype-event #fieldset-default > .field {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    float: left;
+    padding: 1em;
+    width: 100%;
+}
