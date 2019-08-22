@@ -4,7 +4,9 @@ Changelog
 1.2.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add div to load social media in new event_booking view
+- Add new resources (js and css to print/hide "more details" link)
+  [boulch]
 
 
 1.2.15 (2019-03-04)
