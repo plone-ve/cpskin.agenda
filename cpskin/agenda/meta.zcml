@@ -6,8 +6,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
-  <include package="z3c.jbot" file="meta.zcml" />
-
   <genericsetup:upgradeStep
       title="Upgrade cpskin.agenda from 1000 to 1001"
       source="1000"
