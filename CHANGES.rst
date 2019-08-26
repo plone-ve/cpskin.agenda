@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.17 (unreleased)
+1.2.17 (2019-08-26)
 -------------------
 
 - Add additionnal datas in event_booking view
