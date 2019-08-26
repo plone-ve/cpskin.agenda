@@ -110,7 +110,7 @@
       </div>
 
       <tal:location tal:define="location view/get_location" tal:condition="location">
-        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title"/>
+      <a target="_blank" tal:attributes="href location/absolute_url" tal:content="python:'{}: {} {}, {} {}'.format(location.Title(), location.number, location.street, location.zip_code, location.city)"/>
       </tal:location>
 
       <div class="text" tal:condition="data/text" tal:content="structure data/text"></div>
