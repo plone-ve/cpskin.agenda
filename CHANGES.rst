@@ -4,7 +4,10 @@ Changelog
 1.2.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add additionnal datas in event_booking view
+- Remove some extra js.
+- Amended/reorder event_booking view
+  [boulch]
 
 
 1.2.16 (2019-08-22)
