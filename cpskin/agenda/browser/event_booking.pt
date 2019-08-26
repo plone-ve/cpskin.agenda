@@ -34,9 +34,7 @@
       <!-- END OF Taxonomy -->
 
       <div class="event-booking">
-      <div class="booking">
-        <div class="header" i18n:translate="">Booking</div>
-
+      <!--div class="booking-above">
         <div class="booking-type" tal:condition="view/has_booking">
           <span class="label" i18n:translate="">Booking type</span>
           <div tal:replace="view/get_booking_type" />
@@ -51,11 +49,11 @@
 
         <tal:booking tal:define="booking_url context/booking_url | nothing"
             tal:condition="booking_url">
-          <a target="_blank" class="ticketing" tal:attributes="href booking_url" i18n:translate="">
+          <a target="_blank" class="ticketing" tal:attributes="href booking_url" i18n:translate="ticketing">
             Ticketing
           </a>
         </tal:booking>
-      </div>
+      </div-->
 
       <metal:comment tal:content="nothing">
       If you write a custom title always use
@@ -112,36 +110,14 @@
       </div>
 
       <tal:location tal:define="location view/get_location" tal:condition="location">
-        <span class="location" tal:content="location"/>
+        <a target="_blank" tal:attributes="href location/absolute_url" tal:content="location/Title"/>
       </tal:location>
 
       <div class="text" tal:condition="data/text" tal:content="structure data/text"></div>
 
-      <div class="booking">
-        <div class="header" i18n:translate="">Booking</div>
-
-        <div class="booking-type" tal:condition="view/has_booking">
-          <span class="label" i18n:translate="">Booking type</span>
-          <div tal:replace="view/get_booking_type" />
-        </div>
-
-        <div class="booking-price"
-             tal:define="booking_price context/booking_price | nothing"
-             tal:condition="booking_price">
-          <span class="label" i18n:translate="">Price</span>
-          <div tal:replace="booking_price" />
-        </div>
-
-        <tal:booking tal:define="booking_url context/booking_url | nothing"
-            tal:condition="booking_url">
-          <a target="_blank" class="ticketing" tal:attributes="href booking_url" i18n:translate="">
-            Ticketing
-          </a>
-        </tal:booking>
-      </div>
 
       <div class="details">
-        <div class="header toggle-button" id="details-button" i18n:translate="">More details</div>
+        <div class="header toggle-button" id="details-button" i18n:translate="more_details">More details</div>
         <div id="details-block" class="desactive">
           <div class="event_contacts" tal:define="contact view/get_contact" tal:condition="contact">
             <div class="label" i18n:translate="">Contact</div>
@@ -220,6 +196,26 @@
               </div>
             </div>
             </div>
+      </div>
+      <div class="booking-below">
+        <div class="booking-type" tal:condition="view/has_booking">
+          <span class="label" i18n:translate="">Booking type</span>
+          <div tal:replace="view/get_booking_type" />
+        </div>
+
+        <div class="booking-price"
+             tal:define="booking_price context/booking_price | nothing"
+             tal:condition="booking_price">
+          <span class="label" i18n:translate="">Price</span>
+          <div tal:replace="booking_price" />
+        </div>
+
+        <tal:booking tal:define="booking_url context/booking_url | nothing"
+            tal:condition="booking_url">
+          <a target="_blank" class="ticketing" tal:attributes="href booking_url" i18n:translate="ticketing">
+            Ticketing
+          </a>
+        </tal:booking>
       </div>
 	</div><!-- end-event-booking -->
 	<div id="event-booking-sl" /><!-- cpskin.theme : diazo content rules-->
