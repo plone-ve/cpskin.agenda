@@ -119,6 +119,14 @@
       <div class="details">
         <div class="header toggle-button" id="details-button" i18n:translate="more_details">More details</div>
         <div id="details-block" class="desactive">
+        <!-- Taxonomy : Can hide taxonomy with css... -->
+        <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
+                    tal:condition='taxonomies'>
+            <tal:loop tal:repeat="taxonomy taxonomies">
+                <div tal:content='taxonomy/value' tal:attributes="class taxonomy/id"></div>
+            </tal:loop>
+        </tal:condition>
+        <!-- END OF Taxonomy -->
           <div class="event_contacts" tal:define="contact view/get_contact" tal:condition="contact">
             <div class="label" i18n:translate="">Contact</div>
             <a class="event_title" target="_blank" tal:attributes="href contact/absolute_url" tal:content="contact/Title"/>
