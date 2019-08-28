@@ -4,7 +4,9 @@ Changelog
 1.2.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- clean js
+- duplicate taxonomy
+  [boulch]
 
 
 1.2.17 (2019-08-26)
