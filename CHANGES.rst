@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.19 (unreleased)
+1.2.19 (2019-09-04)
 -------------------
 
 - event_booking template : Load image_banner img (with good scale) if exist else load leadimage (with good scale) if exist else no img!
