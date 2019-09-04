@@ -23,7 +23,7 @@
           </metal:text>
 
 
-      <img class="event_booking_img" tal:attributes="src string:${data/url}/@@images/image">
+      <img class="event_booking_img" tal:condition="python:view.get_good_banner()" tal:attributes="src python:view.get_good_banner()" />
       <!-- Taxonomy -->
       <tal:condition tal:define='taxonomies python:view.get_taxonomies()'
                     tal:condition='taxonomies'>
