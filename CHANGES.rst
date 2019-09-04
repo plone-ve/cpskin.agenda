@@ -4,7 +4,8 @@ Changelog
 1.2.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- event_booking template : Load image_banner img (with good scale) if exist else load leadimage (with good scale) if exist else no img!
+  [boulch]
 
 
 1.2.18 (2019-08-28)
