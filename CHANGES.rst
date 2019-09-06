@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.20 (unreleased)
+1.2.20 (2019-09-06)
 -------------------
 
 - Use new field image_header (cpskin.core behavior) instead of image_banner in event_booking view.
