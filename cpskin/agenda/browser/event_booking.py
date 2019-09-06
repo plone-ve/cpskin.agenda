@@ -8,12 +8,12 @@ class EventBooking(EventContactSummaryView):
 
     def get_good_banner(self):
         img = None
-        if self.context.image_banner and self.has_crop(self.context, 'image_banner', 'banner_event'):
-            img = '@@images/image_banner/banner_event'
-        if img is None and self.context.image_banner and self.has_crop(self.context, 'image_banner', 'banner'):
-            img = '@@images/image_banner/banner'
-        if img is None and self.context.image_banner:
-            img = '@@images/image_banner'
+        if self.context.image_header and self.has_crop(self.context, 'image_header', 'banner_event'):
+            img = '@@images/image_header/banner_event'
+        if img is None and self.context.image_header and self.has_crop(self.context, 'image_header', 'banner'):
+            img = '@@images/image_header/banner'
+        if img is None and self.context.image_header:
+            img = '@@images/image_header'
         if img is None and self.context.image and self.has_crop(self.context, 'image', 'banner_event'):
             img = '@@images/image/banner_event'
         if img is None and self.context.image and self.has_crop(self.context, 'image', 'banner'):
