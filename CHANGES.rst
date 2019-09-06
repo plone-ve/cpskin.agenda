@@ -4,7 +4,8 @@ Changelog
 1.2.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use new field image_header (cpskin.core behavior) instead of image_banner in event_booking view.
+  [boulch]
 
 
 1.2.19 (2019-09-04)
