@@ -4,7 +4,8 @@ Changelog
 1.2.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- fix encoding in new event_booking template.
+  [boulch]
 
 
 1.2.20 (2019-09-06)
