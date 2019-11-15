@@ -2,6 +2,7 @@ from cpskin.agenda.browser.event_summary import EventContactSummaryView
 from zope.annotation.interfaces import IAnnotations
 from plone.app.imagecropping import PAI_STORAGE_KEY
 
+
 class EventBooking(EventContactSummaryView):
     """
     """
@@ -30,3 +31,7 @@ class EventBooking(EventContactSummaryView):
         if not crops:
             return False
         return '{0:s}_{1:s}'.format(fieldname, scale) in crops
+
+    def get_str_location(self):
+        location = super(EventBooking, self).get_location()
+        return '{}: {} {}, {} {}'.format(location.Title(), location.number, location.street.encode('utf-8'), location.zip_code, location.city.encode('utf-8'))
