@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.21 (unreleased)
+1.2.21 (2019-11-18)
 -------------------
 
 - fix encoding in new event_booking template.
