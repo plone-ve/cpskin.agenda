@@ -4,7 +4,8 @@ Changelog
 1.2.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix profile version after migrations have been written (with wrong versions)
+  [laulaz]
 
 
 1.2.21 (2019-11-18)
