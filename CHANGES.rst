@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.22 (unreleased)
+1.2.22 (2019-12-18)
 -------------------
 
 - Add div + labels + translations for location and organizer
