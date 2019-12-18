@@ -3,6 +3,9 @@ Changelog
 
 1.2.22 (unreleased)
 -------------------
+
+- Add div + labels + translations for location and organizer
+  [boulch]
 - Prevent error when encoding "None" location
   [boulch]
 - Fix profile version after migrations have been written (with wrong versions)
