@@ -63,9 +63,10 @@
         Generic KSS Title. Is rendered with class="documentFirstHeading".
       </h1>
 
-      <tal:organizer tal:define="organizer view/get_organizer" tal:condition="organizer">
-        <a target="_blank" class="organizer" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title"/>
-      </tal:organizer>
+      <div class="organizer" tal:define="organizer view/get_organizer" tal:condition="organizer">
+        <span i18n:translate="Organizer">Organizer</span>
+        <a target="_blank" tal:attributes="href organizer/absolute_url" tal:content="organizer/Title"/>
+    </div>
 
       <div class="all-dates"
            tal:define="next_occs view/next_occurrences;
@@ -108,9 +109,10 @@
           </a>
         </tal:condi>
       </div>
-      <tal:location tal:define="location view/get_location" tal:condition="location">
+      <div class="location" tal:define="location view/get_location" tal:condition="location">
+      <span i18n:translate="Location">Location</span>
       <a target="_blank" tal:attributes="href location/absolute_url" tal:content="view/get_str_location"/>
-      </tal:location>
+      </div>
 
       <div class="text" tal:condition="data/text" tal:content="structure data/text"></div>
 
@@ -234,4 +236,3 @@
 
   </body>
 </html>
-
