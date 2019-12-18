@@ -48,8 +48,10 @@ class EventBooking(EventContactSummaryView):
 
     def get_str_location(self):
         location = super(EventBooking, self).get_location()
-        city = location.city.encode("utf-8") if location.city else u""
+        number = ": {}".format(location.number) if location.number else u""
         street = location.street.encode("utf-8") if location.street else u""
-        return "{}: {} {}, {} {}".format(
-            location.Title(), location.number, street, location.zip_code, city
+        zip_code = location.zip_code or u""
+        city = location.city.encode("utf-8") if location.city else u""
+        return "{} {} {}, {} {}".format(
+            location.Title(), number, street, zip_code, city
         )
