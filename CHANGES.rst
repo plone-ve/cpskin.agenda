@@ -4,7 +4,8 @@ Changelog
 1.2.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- event_booking.pt : beautify template.
+  [boulch]
 
 
 1.2.22 (2019-12-18)
