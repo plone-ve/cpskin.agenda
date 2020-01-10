@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.23 (unreleased)
+1.2.23 (2020-01-10)
 -------------------
 
 - Add event.stopImmediatePropagation() (resources/eventbooking.js) to Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.
