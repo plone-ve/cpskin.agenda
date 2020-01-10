@@ -4,6 +4,9 @@ Changelog
 1.2.23 (unreleased)
 -------------------
 
+- Add event.stopImmediatePropagation() (resources/eventbooking.js) to Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.
+  Fix a bug with cpskin.diazotheme.newdream.
+  [boulch]
 - event_booking.pt : beautify template.
   [boulch]
 
