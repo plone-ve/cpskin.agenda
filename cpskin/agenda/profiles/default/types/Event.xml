@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="Event">
+  <property name="view_methods" purge="false">
+    <element value="event_booking"/>
+  </property>
+</object>

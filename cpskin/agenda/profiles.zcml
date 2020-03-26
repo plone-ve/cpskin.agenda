@@ -28,4 +28,12 @@
         handler="cpskin.agenda.upgrades.upgrade_1001_to_1002"
         profile="cpskin.agenda:default"/>
 
+    <genericsetup:upgradeStep
+        title="Upgrade cpskin.agenda from 1002 to 1003"
+        description="Add event_booking view to Event type"
+        source="1002"
+        destination="1003"
+        handler="cpskin.agenda.upgrades.upgrade_1002_to_1003"
+        profile="cpskin.agenda:default"/>
+
 </configure>
