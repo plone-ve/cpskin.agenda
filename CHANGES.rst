@@ -4,7 +4,8 @@ Changelog
 1.2.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- ZCML refacoring
+  [laulaz]
 
 
 1.2.23 (2020-01-10)
