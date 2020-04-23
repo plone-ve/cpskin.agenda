@@ -4,6 +4,8 @@ Changelog
 1.2.24 (unreleased)
 -------------------
 
+- Moved some translations into cpskin.locales package
+  [macagua]
 - Add more improvements for i18n support
   [macagua]
 - Add missing event_booking view to Event view_methods

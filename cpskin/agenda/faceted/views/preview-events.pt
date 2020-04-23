@@ -43,7 +43,7 @@
              id="events-preview-limit-message"
              i18n:domain="cpskin"
              i18n:translate="">
-            Un maximum de <span i18n:name="limit" tal:replace="limit" /> jours comprenant des &eacute;v&eacute;nements est affich&eacute;.
+            A maximum of <span i18n:name="limit" tal:replace="limit" /> days including events is displayed.
         </div>
 
       </div>
